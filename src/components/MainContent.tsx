@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CountryList } from "./CountryList";
+import { Country } from "./Country";
 
 //SHAPE FOR API COUNTRY OBJECT
 export interface CountryData {

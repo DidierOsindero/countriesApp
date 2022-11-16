@@ -2,7 +2,7 @@ import { CountryData } from "./MainContent"
 
 export const Country = (): JSX.Element => {
     return (
-      <div className="mainContentWrapper">
+      <div className="countryWrapper">
         <p>CountryList</p>
       </div>
     );
