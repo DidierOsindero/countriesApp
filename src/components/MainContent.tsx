@@ -22,15 +22,30 @@ interface MainContenStates {
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
 export const MainContent = (): JSX.Element => {
   //STATES
   const [searchText, setSearchText] = useState<string>("");
+  const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
   //OBJECT TO PASS STATES
   const StatesObject: MainContenStates = {
     searchText: searchText,
     setSearchText: setSearchText,
   };
+
+  const fetchCountryData = async () => {
+    const response = await fetch("https://restcountries.com/v2/all");
+    const jsonBody: CountryData[] = await response.json();
+    setCountriesArray(jsonBody);
+  };
+  console.log("Countries Array: ", countriesArray);
+
+  //LOADS COUNTRIES WHEN MOUNTED
+  useEffect(() => {
+    fetchCountryData();
+  }, []);
+
   //Handler Functions
 
   return (
