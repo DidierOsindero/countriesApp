@@ -10,9 +10,20 @@ MAIN_CONTENT===============
 .mainContentWrapper {
     text-align: center;
 }
+
+.countryListWrapper {
+    display:inline;
+}
+
+.countryWrapper {
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 300px;
+}
 /*
 FOOTER===============
 */
-.headerWrapper {
+.footerWrapper {
     text-align: center;
+    clear:left;
 }
