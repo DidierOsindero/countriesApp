@@ -1,11 +1,18 @@
 /*
 HEADER===============
 */
-
+.headerWrapper {
+    text-align: center;
+}
 /*
 MAIN_CONTENT===============
 */
-
+.mainContentWrapper {
+    text-align: center;
+}
 /*
 FOOTER===============
 */
+.headerWrapper {
+    text-align: center;
+}
