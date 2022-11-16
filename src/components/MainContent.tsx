@@ -1,7 +1,7 @@
 import { CountryList } from "./CountryList";
 
 //SHAPE FOR API COUNTRY OBJECT
-interface CountryData {
+export interface CountryData {
   [key:string]: unknown;
   name: string;
   capital: string;

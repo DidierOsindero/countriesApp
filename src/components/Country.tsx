@@ -1,3 +1,5 @@
+import { CountryData } from "./MainContent"
+
 export const Country = (): JSX.Element => {
     return (
       <div className="mainContentWrapper">
