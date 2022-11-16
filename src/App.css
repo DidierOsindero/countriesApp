@@ -8,9 +8,12 @@ HEADER===============
 MAIN_CONTENT===============
 */
 .mainContentWrapper {
-    text-align: center;
+
 }
 
+.searchTools {
+    text-align: center;
+}
 .countryListWrapper {
     display:inline;
 }
@@ -18,7 +21,9 @@ MAIN_CONTENT===============
 .countryWrapper {
     border: 2px solid black;
     border-radius: 20px;
-    width: 300px;
+    width: 200px;
+    margin: 20px;
+    text-align: center;
 }
 /*
 FOOTER===============

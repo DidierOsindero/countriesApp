@@ -9,6 +9,7 @@ export interface CountryData {
   continent: string;
   population: string;
   languages: LanguagesData[];
+  flags: Record<string, string>;
 }
 
 interface LanguagesData {
@@ -60,13 +61,15 @@ export const MainContent = (): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
-      <input
-        value={searchText}
-        onChange={(el) => setSearchText(el.target.value)}
-      />
-      <button onClick={handleBigCountryFilter}>Big Countries</button>
-      <button onClick={handleSmallCountryFilter}>Small Countries</button>
-      <ul className="countryListWrapper">
+      <div className="searchTools">
+        <input
+          value={searchText}
+          onChange={(el) => setSearchText(el.target.value)}
+        />
+        <button onClick={handleBigCountryFilter}>Big Countries</button>
+        <button onClick={handleSmallCountryFilter}>Small Countries</button>
+      </div>
+      <div className="countryListWrapper">
         {countriesArray
           .filter((country) => {
             const isMatchingSearch = country.name
@@ -87,7 +90,7 @@ export const MainContent = (): JSX.Element => {
           .map((el, index) => (
             <Country currentCountry={el} key={index} />
           ))}
-      </ul>
+      </div>
     </div>
   );
 };
