@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CountryData } from "./MainContent";
 import { MainContentStates } from "./MainContent"
 interface CountryProps {
@@ -5,12 +6,17 @@ interface CountryProps {
 }
 
 export const Country = ({ currentCountry }: CountryProps): JSX.Element => {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
-    console.log(currentCountry.flags.png)
-  return (
+  const handleIsClicked = () => {
+    setIsClicked(prev=>!prev);
+  }
+
+  if (isClicked)
+  {return (
     <div className="countryWrapper">
       <h3>{currentCountry.name}</h3>
-      <div className="countryContentWrapper">
+      <div className="countryContentWrapper" onClick={handleIsClicked}>
         <img src={currentCountry.flags.png} width="150px" alt=""/>
         <p><b>Population:</b> {currentCountry.population}</p>
         <p><b>Capital:</b> {currentCountry.capital}</p>
@@ -19,5 +25,15 @@ export const Country = ({ currentCountry }: CountryProps): JSX.Element => {
         {currentCountry.languages[1] && <p><b>Second Language:</b> {currentCountry.languages[1].name}</p>}
       </div>
     </div>
-  );
+  );} else {
+    return (
+      <div className="countryWrapper">
+        <h3>{currentCountry.name}</h3>
+        <div className="countryContentWrapper" onClick={handleIsClicked}>
+          <img src={currentCountry.flags.png} width="150px" height= "100px" alt=""/>
+          <p><i>Click For More...</i></p>
+        </div>
+      </div>
+    );
+  }
 };
