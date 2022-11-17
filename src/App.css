@@ -4,6 +4,9 @@ HEADER===============
 */
 .headerWrapper {
     text-align: center;
+    padding: 20px;
+    background-color: rgb(0, 0, 91);
+    color: rgb(249, 248, 248);
 }
 /*
 MAIN_CONTENT===============

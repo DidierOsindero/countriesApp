@@ -3,13 +3,13 @@ import { Country } from "./Country";
 
 //SHAPE FOR API COUNTRY OBJECT
 export interface CountryData {
-  [key: string]: unknown;
   name: string;
   capital: string;
   continent: string;
   population: string;
   languages: LanguagesData[];
   flags: Record<string, string>;
+  region: string;
 }
 
 interface LanguagesData {
