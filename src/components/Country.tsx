@@ -11,7 +11,7 @@ export const Country = ({ currentCountry }: CountryProps): JSX.Element => {
     <div className="countryWrapper">
       <h3>{currentCountry.name}</h3>
       <div className="countryContentWrapper">
-        <img src={currentCountry.flags.png} width="150pxpx"/>
+        <img src={currentCountry.flags.png} width="150px"/>
         <p>Population: {currentCountry.population}</p>
         <p>Capital: {currentCountry.capital}</p>
         <p>Continent: {currentCountry.region}</p>
