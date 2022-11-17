@@ -15,6 +15,10 @@ MAIN_CONTENT===============
     text-align: center;
 }
 
+.searchBarWrapper {
+    margin: 15px;
+}
+
 .filterButton{
     border: 1px solid rgb(75, 75, 75);
     border-radius: 20px;
@@ -49,6 +53,7 @@ MAIN_CONTENT===============
 FOOTER===============
 */
 .footerWrapper {
-    text-align: center;
     clear:left;
+    text-align: center;
+    margin: 20px
 }
