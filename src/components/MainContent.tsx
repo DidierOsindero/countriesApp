@@ -66,8 +66,8 @@ export const MainContent = (): JSX.Element => {
           value={searchText}
           onChange={(el) => setSearchText(el.target.value)}
         />
-        <button onClick={handleBigCountryFilter}>Big Countries</button>
-        <button onClick={handleSmallCountryFilter}>Small Countries</button>
+        <button onClick={handleBigCountryFilter} className={bigCountryFilter ? "bigCountryFilterPressed, filterButton" : "bigCountryFilter, filterButton"}>Big Countries</button>
+        <button onClick={handleSmallCountryFilter} className={bigCountryFilter ? "smallCountryFilterPressed, filterButton" : "smallCountryFilter, filterButton"}>Small Countries</button>
       </div>
       <div className="countryListWrapper">
         {countriesArray
