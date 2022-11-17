@@ -1,11 +1,26 @@
 /*
 HEADER===============
 */
-.headerWrapper {
+.headerWrapper > h1 {
   text-align: center;
+  margin: 0px;
   padding: 20px;
   background-color: rgb(0, 0, 91);
   color: rgb(249, 248, 248);
+}
+
+.navBarWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navBarWrapper > div {
+    padding: 20px;
+    margin-bottom: 0px;
+}
+
+.navBarWrapper > div:hover {
+    background-color: aquamarine;
 }
 /*
 MAIN_CONTENT===============
