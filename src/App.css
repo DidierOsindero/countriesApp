@@ -26,17 +26,22 @@ MAIN_CONTENT===============
     color:rgb(121, 121, 121)
 }
 
-.filterButton{
+.filterButtonsWrapper > button{
     border: 1px solid rgb(75, 75, 75);
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
 }
 
-.filterButton:hover {
+.smallCountryFilterPressed {
+    color: darkblue;
+}
+
+.bigCountryFilterPressed {
+    color: darkblue;
+}
+
+.filterButtonsWrapper > button:hover {
     border: 1.5px solid rgb(31, 31, 31);
-    border-radius: 20px;
-   
-    background-color: rgb(255, 255, 255);
 }
 
 .countryListWrapper {

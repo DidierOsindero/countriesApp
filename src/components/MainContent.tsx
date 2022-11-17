@@ -59,6 +59,8 @@ export const MainContent = (): JSX.Element => {
     setBigCountryFilter(false);
   };
 
+  console.log("smallCountryFilter State: ", smallCountryFilter)
+
   return (
     <div className="mainContentWrapper">
       <div className="searchTools">
@@ -73,8 +75,8 @@ export const MainContent = (): JSX.Element => {
             onClick={handleBigCountryFilter}
             className={
               bigCountryFilter
-                ? "bigCountryFilterPressed, filterButton"
-                : "bigCountryFilter, filterButton"
+                ? "bigCountryFilterPressed"
+                : "bigCountryFilter"
             }
           >
             Big Countries
@@ -82,9 +84,9 @@ export const MainContent = (): JSX.Element => {
           <button
             onClick={handleSmallCountryFilter}
             className={
-              bigCountryFilter
-                ? "smallCountryFilterPressed, filterButton"
-                : "smallCountryFilter, filterButton"
+              smallCountryFilter === true
+                ? "smallCountryFilterPressed"
+                : "smallCountryFilter"
             }
           >
             Small Countries
