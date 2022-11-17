@@ -23,11 +23,6 @@ interface MainContentProps {
   quizButton: boolean;
 }
 
-//SHAPE FOR STATES
-export interface MainContentStates {
-  searchText: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
-}
 
 export const MainContent = ({homeButton, quizButton}: MainContentProps): JSX.Element => {
   //STATES
@@ -35,12 +30,6 @@ export const MainContent = ({homeButton, quizButton}: MainContentProps): JSX.Ele
   const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
   const [bigCountryFilter, setBigCountryFilter] = useState<boolean>(false);
   const [smallCountryFilter, setSmallCountryFilter] = useState<boolean>(false);
-
-  //OBJECT TO PASS STATES
-  const StatesObject: MainContentStates = {
-    searchText: searchText,
-    setSearchText: setSearchText,
-  };
 
   const fetchCountryData = async () => {
     const response = await fetch("https://restcountries.com/v2/all");

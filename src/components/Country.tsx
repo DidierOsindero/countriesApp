@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CountryData } from "./MainContent";
-import { MainContentStates } from "./MainContent";
+
 interface CountryProps {
   currentCountry: CountryData;
 }
