@@ -14,8 +14,21 @@ MAIN_CONTENT===============
 .searchTools {
     text-align: center;
 }
+
+.filterButton{
+    border: 1px solid rgb(75, 75, 75);
+    border-radius: 20px;
+    background-color: aliceblue;
+}
+
 .countryListWrapper {
-    display:inline;
+    border: 2px solid red;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .countryWrapper {
