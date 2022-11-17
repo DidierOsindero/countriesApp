@@ -1,3 +1,4 @@
+
 /*
 HEADER===============
 */
@@ -19,10 +20,23 @@ MAIN_CONTENT===============
     margin: 15px;
 }
 
+.searchBarWrapper > input {
+    border: 2px solid rgb(98, 97, 97);
+    border-radius: 20px;
+    color:rgb(121, 121, 121)
+}
+
 .filterButton{
     border: 1px solid rgb(75, 75, 75);
     border-radius: 20px;
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
+}
+
+.filterButton:hover {
+    border: 1.5px solid rgb(31, 31, 31);
+    border-radius: 20px;
+   
+    background-color: rgb(255, 255, 255);
 }
 
 .countryListWrapper {
