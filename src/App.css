@@ -16,16 +16,26 @@ HEADER===============
 }
 
 .navBarWrapper > div {
+  cursor: pointer;
+}
+.homeButton, .quizButton {
     padding: 15px;
     margin-bottom: 0px;
+    color:rgb(121, 121, 121);
 }
 
-.navBarWrapper > div:hover {
-    background-color: rgb(240, 240, 240);
+.homeButton:hover, .quizButton:hover {
+  padding: 15px;
+  margin-bottom: 0px;
+  color: rgb(31, 31, 31);
 }
 
 .homeButtonPressed, .quizButtonPressed{
-  background-color: rgb(240, 240, 240);
+  padding: 15px;
+    margin-bottom: 0px;
+  border: 1px solid rgb(208, 208, 208);
+  border-radius: 5px;
+  color: rgb(31, 31, 31);
 }
 /*
 MAIN_CONTENT===============
@@ -88,6 +98,19 @@ MAIN_CONTENT===============
   margin: 20px;
   text-align: center;
 }
+
+/*
+Quiz
+*/
+.quizWrapper {
+  text-align: center;
+}
+
+.quizImage {
+  margin: 20px;
+}
+
+
 /*
 FOOTER===============
 */
