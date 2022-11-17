@@ -21,7 +21,7 @@ const handleQuizButton = () => {
 
   return (
     <div className="app">
-      <Header handleHomeButton={handleHomeButton} handleQuizButton={handleQuizButton}/>
+      <Header handleHomeButton={handleHomeButton} handleQuizButton={handleQuizButton} homeButton={homeButton} quizButton={quizButton}/>
       <MainContent homeButton={homeButton} quizButton={quizButton}/>
       <Footer />
     </div>

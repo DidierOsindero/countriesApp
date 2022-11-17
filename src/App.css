@@ -23,6 +23,10 @@ HEADER===============
 .navBarWrapper > div:hover {
     background-color: rgb(240, 240, 240);
 }
+
+.homeButtonPressed, .quizButtonPressed{
+  background-color: rgb(240, 240, 240);
+}
 /*
 MAIN_CONTENT===============
 */
