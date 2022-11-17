@@ -31,6 +31,7 @@ MAIN_CONTENT===============
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
+  margin: 0px 5px;
 }
 
 .smallCountryFilterPressed {

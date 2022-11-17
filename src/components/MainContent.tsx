@@ -109,8 +109,8 @@ export const MainContent = (): JSX.Element => {
               return isMatchingSearch;
             }
           })
-          .map((el, index) => (
-            <Country currentCountry={el} key={index} />
+          .map((el) => (
+            <Country currentCountry={el} key={el.name} />
           ))}
       </div>
       <hr />

@@ -19,7 +19,7 @@ export const Country = ({ currentCountry }: CountryProps): JSX.Element => {
         <div className="countryContentWrapper" onClick={handleIsClicked}>
           <img src={currentCountry.flags.png} width="150px" alt="" />
           <p>
-            <b>Population:</b> {currentCountry.population}
+            <b>Population:</b> {currentCountry.population.toLocaleString()}
           </p>
           <p>
             <b>Capital:</b> {currentCountry.capital}
