@@ -1,10 +1,18 @@
-export const Header = (): JSX.Element => {
+//HeaderProps
+interface HeaderProps {
+  handleHomeButton: () => void;
+  handleQuizButton: () => void;
+}
+
+export const Header = ({handleHomeButton, handleQuizButton}:HeaderProps): JSX.Element => {
+
+  
   return (
     <div className="headerWrapper">
       <h1>Countries of the World</h1>
       <div className="navBarWrapper">
-        <div>Countries</div>
-        <div>Quiz</div>
+        <div onClick={handleHomeButton}>Home</div>
+        <div onClick={handleQuizButton}>Quiz</div>
       </div>
     </div>
   );

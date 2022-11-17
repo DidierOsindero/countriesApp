@@ -56,7 +56,8 @@ export const MainContent = ({homeButton, quizButton}: MainContentProps): JSX.Ele
 
   console.log("smallCountryFilter State: ", smallCountryFilter);
 
-  return (
+  if (homeButton)
+  {return (
     <div className="mainContentWrapper">
       <div className="searchTools">
         <div className="searchBarWrapper">
@@ -110,5 +111,17 @@ export const MainContent = ({homeButton, quizButton}: MainContentProps): JSX.Ele
       </div>
       <hr />
     </div>
-  );
+  );} else {
+    return (
+      <div className="mainContentWrapper">
+        <div className="countryListWrapper">
+          {countriesArray
+            .map((el) => (
+              <Country currentCountry={el} key={el.name} />
+            ))}
+        </div>
+        <hr />
+      </div>
+    );
+  }
 };
