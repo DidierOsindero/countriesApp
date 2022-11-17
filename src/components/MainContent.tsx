@@ -62,13 +62,13 @@ export const MainContent = (): JSX.Element => {
   return (
     <div className="mainContentWrapper">
       <div className="searchTools">
-        <div>
+        <div className="searchBarWrapper">
           <input
             value={searchText}
             onChange={(el) => setSearchText(el.target.value)}
           />
         </div>
-        <div>
+        <div className="filterButtonsWrapper">
           <button
             onClick={handleBigCountryFilter}
             className={
@@ -113,6 +113,7 @@ export const MainContent = (): JSX.Element => {
             <Country currentCountry={el} key={index} />
           ))}
       </div>
+      <hr />
     </div>
   );
 };
