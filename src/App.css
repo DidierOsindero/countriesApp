@@ -31,7 +31,15 @@ MAIN_CONTENT===============
 }
 
 .countryWrapper {
-    border: 2px solid black;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 20px;
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+.countryWrapper:hover {
+    border: 2px solid rgb(31, 31, 31);
     border-radius: 20px;
     width: 250px;
     margin: 20px;
