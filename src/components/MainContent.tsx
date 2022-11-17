@@ -17,13 +17,19 @@ interface LanguagesData {
   name: string;
 }
 
+//MainContentProps
+interface MainContentProps {
+  homeButton: boolean;
+  quizButton: boolean;
+}
+
 //SHAPE FOR STATES
 export interface MainContentStates {
   searchText: string;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const MainContent = (): JSX.Element => {
+export const MainContent = ({homeButton, quizButton}: MainContentProps): JSX.Element => {
   //STATES
   const [searchText, setSearchText] = useState<string>("");
   const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
