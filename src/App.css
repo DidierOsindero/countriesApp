@@ -12,15 +12,16 @@ HEADER===============
 .navBarWrapper {
     display: flex;
     flex-wrap: wrap;
+    background-color: rgb(250, 250, 250);
 }
 
 .navBarWrapper > div {
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 0px;
 }
 
 .navBarWrapper > div:hover {
-    background-color: aquamarine;
+    background-color: rgb(240, 240, 240);
 }
 /*
 MAIN_CONTENT===============
