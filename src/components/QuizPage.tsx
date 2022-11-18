@@ -38,8 +38,8 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     randomQuizArray[questionNumber].name.toLowerCase()
   ) {
     setSubmittedQuizAnswer("");
-    setNumOfCorrectAnswers(prev => prev += 1);
-    setNumOfTotalAnswers(prev => prev += 1);
+    setNumOfCorrectAnswers((prev) => (prev += 1));
+    setNumOfTotalAnswers((prev) => (prev += 1));
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
@@ -48,7 +48,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   ) {
     setSubmittedQuizAnswer("");
     setIsAnswerCorrect(false);
-    setNumOfTotalAnswers(prev => prev += 1);
+    setNumOfTotalAnswers((prev) => (prev += 1));
     console.log(
       `Wrong Answer! ${randomQuizArray[questionNumber].name} is the correct answer `
     );
@@ -58,7 +58,9 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   return (
     <div className="quizWrapper">
       <h2>Name the Country</h2>
-      <h4>{numOfCorrectAnswers} / {numOfTotalAnswers}</h4>
+      <h4>
+        {numOfCorrectAnswers} / {numOfTotalAnswers}
+      </h4>
       <img
         className="quizImage"
         src={randomQuizArray[questionNumber].flags.svg}
@@ -91,13 +93,13 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
             className="userAnswerSubmit"
             disabled={quizInputValue === ""}
           />
-            <button
-              className="nextCountryButton"
-              onClick={handleNextCountryButton}
-              disabled={isAnswerCorrect === null}
-            >
-              Next Country
-            </button>
+          <button
+            className="nextCountryButton"
+            onClick={handleNextCountryButton}
+            disabled={isAnswerCorrect === null}
+          >
+            Next Country
+          </button>
         </div>
       </div>
       <hr />
