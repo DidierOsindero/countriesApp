@@ -26,7 +26,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const handleAnswerSubmit = () => {
     setSubmittedQuizAnswer(quizInputValue);
     setQuizInputValue("");
-    setTimeout(handleNextCountry, 3000);
+    setTimeout(handleNextCountry, 1500);
   };
 
   const handleNextCountry = () => {
