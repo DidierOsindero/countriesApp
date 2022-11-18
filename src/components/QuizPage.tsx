@@ -88,15 +88,15 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
             type="submit"
             onClick={handleAnswerSubmit}
             className="userAnswerSubmit"
+            disabled={quizInputValue === ""}
           />
-          {isAnswerCorrect !== null && (
             <button
               className="nextCountryButton"
               onClick={handleNextCountryButton}
+              disabled={isAnswerCorrect === null}
             >
               Next Country
             </button>
-          )}
         </div>
       </div>
       <hr />
