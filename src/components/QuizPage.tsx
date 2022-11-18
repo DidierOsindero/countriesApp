@@ -26,7 +26,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const handleAnswerSubmit = () => {
     setSubmittedQuizAnswer(quizInputValue);
     setQuizInputValue("");
-    setTimeout( handleNextCountry, 3000);
+    setTimeout(handleNextCountry, 3000);
   };
 
   const handleNextCountry = () => {
@@ -81,12 +81,14 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
       )}
 
       <div className="quizInputWrapper">
-        <input
-          value={quizInputValue}
-          onChange={(el) => setQuizInputValue(el.target.value)}
-          className="userAnswerTextInput"
-          placeholder="Country name..."
-        />
+        {isAnswerCorrect === null && (
+          <input
+            value={quizInputValue}
+            onChange={(el) => setQuizInputValue(el.target.value)}
+            className="userAnswerTextInput"
+            placeholder="Country name..."
+          />
+        )}
         <div>
           <input
             type="submit"
