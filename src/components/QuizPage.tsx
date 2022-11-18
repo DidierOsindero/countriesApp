@@ -19,8 +19,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     quizArray.sort(() => Math.random() - 0.5)
   );
   const [questionNumber, setQuestionNumber] = useState<number>(0);
-
-  console.log(randomQuizArray);
+  const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
 
   //HANDLERS
   const handleAnswerSubmit = () => {
@@ -38,10 +37,8 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     randomQuizArray[questionNumber].name.toLowerCase()
   ) {
     setSubmittedQuizAnswer("");
+    setNumOfCorrectAnswers(prev => prev += 1)
     setIsAnswerCorrect(true);
-    console.log(
-      `Correct! ${randomQuizArray[questionNumber].name} is the correct answer `
-    );
   } else if (
     submittedQuizAnswer.toLowerCase() !==
       randomQuizArray[questionNumber].name.toLowerCase() &&
@@ -58,6 +55,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   return (
     <div className="quizWrapper">
       <h2>Name the Country</h2>
+      <h4>{numOfCorrectAnswers} / {questionNumber}</h4>
       <img
         className="quizImage"
         src={randomQuizArray[questionNumber].flags.svg}
