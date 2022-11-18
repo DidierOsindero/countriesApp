@@ -26,9 +26,10 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const handleAnswerSubmit = () => {
     setSubmittedQuizAnswer(quizInputValue);
     setQuizInputValue("");
+    setTimeout( handleNextCountry, 3000);
   };
 
-  const handleNextCountryButton = () => {
+  const handleNextCountry = () => {
     setIsAnswerCorrect(null);
     setQuestionNumber((prev) => (prev += 1));
   };
@@ -93,13 +94,6 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
             className="userAnswerSubmit"
             disabled={quizInputValue === ""}
           />
-          <button
-            className="nextCountryButton"
-            onClick={handleNextCountryButton}
-            disabled={isAnswerCorrect === null}
-          >
-            Next Country
-          </button>
         </div>
       </div>
       <hr />
