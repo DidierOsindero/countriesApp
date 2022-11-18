@@ -132,6 +132,7 @@ Quiz
 
 .quizImage {
   margin: 10px;
+  border: 0.5px solid gray;
 }
 
 .userAnswerTextInput {
@@ -153,6 +154,14 @@ Quiz
 .userAnswerSubmit:active,
 .nextCountryButton:active {
   background-color: rgb(227, 226, 226);
+}
+
+.wrongAnswerText {
+  color: red;
+}
+
+.correctAnswerText {
+  color: rgb(3, 231, 3);
 }
 
 /*

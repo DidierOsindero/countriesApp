@@ -69,12 +69,12 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
         alt=""
       />
       {isAnswerCorrect === true && (
-        <p>
+        <p className="correctAnswerText">
           Correct! {randomQuizArray[questionNumber].name} is the right answer.
         </p>
       )}
       {isAnswerCorrect === false && (
-        <p>
+        <p className="wrongAnswerText">
           Wrong answer! {randomQuizArray[questionNumber].name} is the correct
           answer.
         </p>
