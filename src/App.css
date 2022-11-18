@@ -55,7 +55,7 @@ MAIN_CONTENT===============
   color: rgb(121, 121, 121);
 }
 
-.filterButtonsWrapper > button {
+.bigCountryFilter, .smallCountryFilter {
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
@@ -64,11 +64,21 @@ MAIN_CONTENT===============
 }
 
 .smallCountryFilterPressed {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 5px;
+  font-family: inherit;
   color: darkblue;
+  border: 1.5px solid rgb(31, 31, 31);
 }
 
 .bigCountryFilterPressed {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 5px;
+  font-family: inherit;
   color: darkblue;
+  border: 1.5px solid rgb(31, 31, 31);
 }
 
 .filterButtonsWrapper > button:hover {
