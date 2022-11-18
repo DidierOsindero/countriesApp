@@ -6,17 +6,28 @@ interface QuizPageProps {
 }
 
 export const QuizPage = ({countriesArray}: QuizPageProps): JSX.Element => {
-  //QUIZ STATES
+  //STATES
   const [quizInputValue, setQuizInputValue] = useState<string>("");
   const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
 
-
-  //Handler Functions
+  //HANDLERS
   const handleAnswerSubmit = () => {
     setSubmittedQuizAnswer(quizInputValue);
     setQuizInputValue("");
   };
 
+  if (submittedQuizAnswer.toLowerCase() === countriesArray[25].name.toLowerCase()) {
+    setSubmittedQuizAnswer("")
+    setIsAnswerCorrect(true);
+    //console.log(`Correct! ${countriesArray[25].name} is the correct Answer `)
+  } else if (submittedQuizAnswer.toLowerCase() !== countriesArray[25].name.toLowerCase() && submittedQuizAnswer.toLowerCase() !== "") {
+    setSubmittedQuizAnswer("")
+    setIsAnswerCorrect(false);
+    //console.log(`Wrong Answer! ${countriesArray[25].name} is the correct Answer `)
+  }
+
+  //RETURNS
   return (
     <div className="quizWrapper">
       <h2>Name the Country</h2>
@@ -30,13 +41,13 @@ export const QuizPage = ({countriesArray}: QuizPageProps): JSX.Element => {
         <input
           value={quizInputValue}
           onChange={(el) => setQuizInputValue(el.target.value)}
-          name="userInputAnswer"
+          className="userAnswerTextInput"
           placeholder="Country name..."
         />
         <input
           type="submit"
           onClick={handleAnswerSubmit}
-          name="userAnswerSubmit"
+          className="userAnswerSubmit"
         />
       </div>
       <hr />
