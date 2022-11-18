@@ -125,7 +125,7 @@ Quiz
   border: 2px solid rgb(98, 97, 97);
   border-radius: 20px;
   color: rgb(121, 121, 121);
-  margin: 15px;
+  margin-bottom: 15px;
 }
 
 .userAnswerSubmit, .nextCountryButton  {
