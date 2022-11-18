@@ -20,6 +20,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   );
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
+  const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
 
   //HANDLERS
   const handleAnswerSubmit = () => {
@@ -37,7 +38,8 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     randomQuizArray[questionNumber].name.toLowerCase()
   ) {
     setSubmittedQuizAnswer("");
-    setNumOfCorrectAnswers(prev => prev += 1)
+    setNumOfCorrectAnswers(prev => prev += 1);
+    setNumOfTotalAnswers(prev => prev += 1);
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
@@ -46,6 +48,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   ) {
     setSubmittedQuizAnswer("");
     setIsAnswerCorrect(false);
+    setNumOfTotalAnswers(prev => prev += 1);
     console.log(
       `Wrong Answer! ${randomQuizArray[questionNumber].name} is the correct answer `
     );
@@ -55,7 +58,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   return (
     <div className="quizWrapper">
       <h2>Name the Country</h2>
-      <h4>{numOfCorrectAnswers} / {questionNumber}</h4>
+      <h4>{numOfCorrectAnswers} / {numOfTotalAnswers}</h4>
       <img
         className="quizImage"
         src={randomQuizArray[questionNumber].flags.svg}
