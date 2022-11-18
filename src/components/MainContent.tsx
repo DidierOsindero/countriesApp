@@ -43,6 +43,6 @@ export const MainContent = ({
   if (homeButton) {
     return <HomePage countriesArray={countriesArray}/>;
   } else {
-    return <QuizPage />;
+    return <QuizPage countriesArray={countriesArray}/>;
   }
 };

@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 import { CountryData } from "./MainContent";
 
-export const QuizPage = (): JSX.Element => {
+interface QuizPageProps {
+  countriesArray: CountryData[];
+}
+
+export const QuizPage = ({countriesArray}: QuizPageProps): JSX.Element => {
   //QUIZ STATES
   const [quizInputValue, setQuizInputValue] = useState<string>("");
   const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
-  const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
-  const fetchCountryData = async () => {
-    const response = await fetch("https://restcountries.com/v2/all");
-    const jsonBody: CountryData[] = await response.json();
-    setCountriesArray(jsonBody);
-  };
-
-  //LOADS COUNTRIES WHEN MOUNTED
-  useEffect(() => {
-    fetchCountryData();
-  }, []);
 
   //Handler Functions
   const handleAnswerSubmit = () => {
@@ -34,15 +27,17 @@ export const QuizPage = (): JSX.Element => {
         alt=""
       />
       <div className="quizInputWrapper">
-        
-          <input
-            value={quizInputValue}
-            onChange={(el) => setQuizInputValue(el.target.value)}
-            name="userInputAnswer"
-            placeholder="Country name..."
-          />
-          <input type="submit" onClick={handleAnswerSubmit} name="userAnswerSubmit" />
-       
+        <input
+          value={quizInputValue}
+          onChange={(el) => setQuizInputValue(el.target.value)}
+          name="userInputAnswer"
+          placeholder="Country name..."
+        />
+        <input
+          type="submit"
+          onClick={handleAnswerSubmit}
+          name="userAnswerSubmit"
+        />
       </div>
       <hr />
     </div>
