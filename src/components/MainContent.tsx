@@ -28,7 +28,7 @@ export const MainContent = ({
   homeButton,
   quizButton,
 }: MainContentProps): JSX.Element => {
-  const [countriesArray,setCountriesArray] = useState<CountryData[]>([])
+  const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
   const fetchCountryData = async () => {
     const response = await fetch("https://restcountries.com/v2/all");
@@ -41,8 +41,8 @@ export const MainContent = ({
   }, []);
 
   if (homeButton) {
-    return <HomePage countriesArray={countriesArray}/>;
+    return <HomePage countriesArray={countriesArray} />;
   } else {
-    return <QuizPage countriesArray={countriesArray}/>;
+    return <QuizPage countriesArray={countriesArray} />;
   }
 };

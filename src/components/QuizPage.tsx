@@ -30,8 +30,8 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
 
   const handleNextCountryButton = () => {
     setIsAnswerCorrect(null);
-    setQuestionNumber(prev => prev += 1);
-  }
+    setQuestionNumber((prev) => (prev += 1));
+  };
 
   if (
     submittedQuizAnswer.toLowerCase() ===
@@ -90,7 +90,12 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
             className="userAnswerSubmit"
           />
           {isAnswerCorrect !== null && (
-            <button className="nextCountryButton" onClick={handleNextCountryButton}>Next Country</button>
+            <button
+              className="nextCountryButton"
+              onClick={handleNextCountryButton}
+            >
+              Next Country
+            </button>
           )}
         </div>
       </div>

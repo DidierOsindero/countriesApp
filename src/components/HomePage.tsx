@@ -3,10 +3,10 @@ import { CountryData } from "./MainContent";
 import { Country } from "./Country";
 
 interface HomePageProps {
-    countriesArray: CountryData[];
+  countriesArray: CountryData[];
 }
 
-export const HomePage = ({countriesArray}:HomePageProps): JSX.Element => {
+export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
   const [searchText, setSearchText] = useState<string>("");
   const [bigCountryFilter, setBigCountryFilter] = useState<boolean>(false);
   const [smallCountryFilter, setSmallCountryFilter] = useState<boolean>(false);
@@ -35,9 +35,7 @@ export const HomePage = ({countriesArray}:HomePageProps): JSX.Element => {
           <button
             onClick={handleBigCountryFilter}
             className={
-              bigCountryFilter
-                ? "bigCountryFilterPressed"
-                : "bigCountryFilter"
+              bigCountryFilter ? "bigCountryFilterPressed" : "bigCountryFilter"
             }
           >
             Big Countries
