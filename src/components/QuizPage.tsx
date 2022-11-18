@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CountryData } from "./MainContent";
 
 interface QuizPageProps {
