@@ -33,12 +33,15 @@ export const MainContent = ({
   const [bigCountryFilter, setBigCountryFilter] = useState<boolean>(false);
   const [smallCountryFilter, setSmallCountryFilter] = useState<boolean>(false);
 
+  //QUIZ STATES
+  const [quizInputValue, setQuizInputValue] = useState<string>("");
+  const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
+
   const fetchCountryData = async () => {
     const response = await fetch("https://restcountries.com/v2/all");
     const jsonBody: CountryData[] = await response.json();
     setCountriesArray(jsonBody);
   };
-  console.log("Countries Array: ", countriesArray);
 
   //LOADS COUNTRIES WHEN MOUNTED
   useEffect(() => {
@@ -56,7 +59,12 @@ export const MainContent = ({
     setBigCountryFilter(false);
   };
 
-  console.log("smallCountryFilter State: ", smallCountryFilter);
+  const handleAnswerSubmit = () => {
+    setSubmittedQuizAnswer(quizInputValue);
+    setQuizInputValue("");
+  };
+
+  console.log(submittedQuizAnswer)
 
   if (homeButton) {
     return (
@@ -65,7 +73,7 @@ export const MainContent = ({
           <div className="searchBarWrapper">
             <input
               value={searchText}
-              onChange={(el) => setSearchText(el.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
           <div className="filterButtonsWrapper">
@@ -119,14 +127,23 @@ export const MainContent = ({
   } else {
     return (
       <div className="quizWrapper">
+        <h2>Name the Country</h2>
         <img
           className="quizImage"
           src={countriesArray[25].flags.png}
           height="300px"
+          alt=""
         />
         <div className="quizInputWrapper">
-          <input />
-          <input type="submit" />
+          
+            <input
+              value={quizInputValue}
+              onChange={(el) => setQuizInputValue(el.target.value)}
+              name="userInputAnswer"
+              placeholder="Country name..."
+            />
+            <input type="submit" onClick={handleAnswerSubmit} name="userAnswerSubmit" />
+         
         </div>
         <hr />
       </div>
