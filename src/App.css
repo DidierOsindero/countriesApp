@@ -128,14 +128,15 @@ Quiz
   margin: 15px;
 }
 
-.userAnswerSubmit {
+.userAnswerSubmit, .nextCountryButton  {
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
   font-family: inherit;
+  margin-right: 10px;
 }
 
-.userAnswerSubmit:active {
+.userAnswerSubmit:active, .nextCountryButton:active  {
   background-color: rgb(227, 226, 226); 
 }
 
