@@ -29,6 +29,7 @@ export const Header = ({
           Quiz
         </div>
       </div>
+      <hr className="navBarBottomDivider"/>
     </div>
   );
 };

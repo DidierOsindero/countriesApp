@@ -119,6 +119,15 @@ Quiz
 */
 .quizWrapper {
   text-align: center;
+  background-color: rgb(253, 253, 253);
+}
+
+.quizWrapper > h2 {
+  margin-top: 0px;
+}
+
+.navBarBottomDivider {
+  margin: 0px;
 }
 
 .quizImage {
