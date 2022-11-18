@@ -18,7 +18,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const [randomQuizArray] = useState<CountryData[]>(
     quizArray.sort(() => Math.random() - 0.5)
   );
-  const [questionNumber] = useState<number>(1);
+  const [questionNumber, setQuestionNumber] = useState<number>(0);
 
   console.log(randomQuizArray);
 
@@ -27,6 +27,11 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setSubmittedQuizAnswer(quizInputValue);
     setQuizInputValue("");
   };
+
+  const handleNextCountryButton = () => {
+    setIsAnswerCorrect(null);
+    setQuestionNumber(prev => prev += 1);
+  }
 
   if (
     submittedQuizAnswer.toLowerCase() ===
@@ -61,13 +66,13 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
       />
       {isAnswerCorrect === true && (
         <p>
-          Correct! {randomQuizArray[questionNumber].name} is the right answer.{" "}
+          Correct! {randomQuizArray[questionNumber].name} is the right answer.
         </p>
       )}
       {isAnswerCorrect === false && (
         <p>
           Wrong answer! {randomQuizArray[questionNumber].name} is the correct
-          answer.{" "}
+          answer.
         </p>
       )}
 
@@ -78,14 +83,16 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
           className="userAnswerTextInput"
           placeholder="Country name..."
         />
-        <input
-          type="submit"
-          onClick={handleAnswerSubmit}
-          className="userAnswerSubmit"
-        />
-        {isAnswerCorrect !== null && (
-          <button className="nextCountryButton">Next Country</button>
-        )}
+        <div>
+          <input
+            type="submit"
+            onClick={handleAnswerSubmit}
+            className="userAnswerSubmit"
+          />
+          {isAnswerCorrect !== null && (
+            <button className="nextCountryButton" onClick={handleNextCountryButton}>Next Country</button>
+          )}
+        </div>
       </div>
       <hr />
     </div>
