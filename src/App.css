@@ -126,6 +126,10 @@ Quiz
   margin-top: 20px;
 }
 
+.quizResultDisplayWrapper {
+  text-align: center;
+}
+
 .navBarBottomDivider {
   margin: 0px;
 }

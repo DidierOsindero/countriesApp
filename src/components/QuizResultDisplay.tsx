@@ -12,7 +12,7 @@ export const QuizResultDisplay = ({
   handlePlayAgainButton,
 }: QuizResultDisplayProps): JSX.Element => {
   return (
-    <div className="quizResultsWrapper">
+    <div className="quizResultDisplayWrapper">
       <button onClick={handlePlayAgainButton}>Plag Again</button>
       <h4>Correct Answers</h4>
       <ul className="correctAnswersList">

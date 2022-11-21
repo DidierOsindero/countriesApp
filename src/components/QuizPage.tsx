@@ -145,7 +145,6 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
             )}
           </div>
         </div>
-        <hr />
       </div>
     );
   }
