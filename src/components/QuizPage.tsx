@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CountryData } from "./MainContent";
+import { QuizResultDisplay } from "./QuizResultDisplay";
 
 interface QuizPageProps {
   countriesArray: CountryData[];
@@ -18,8 +19,12 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
 
   //Arrays for correct and incorrect answers to be passed down to end game display
-  const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<CountryData[]>([]);
-  const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>([]);
+  const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<
+    CountryData[]
+  >([]);
+  const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>(
+    []
+  );
 
   //Create a state to store random version of countries array
   const [randomQuizArray] = useState<CountryData[]>(
@@ -52,7 +57,10 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setSubmittedQuizAnswer("");
     setNumOfCorrectAnswers((prev) => (prev += 1));
     setNumOfTotalAnswers((prev) => (prev += 1));
-    setCorrectAnswersArray(prev => [...prev, randomQuizArray[questionNumber]])
+    setCorrectAnswersArray((prev) => [
+      ...prev,
+      randomQuizArray[questionNumber],
+    ]);
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
@@ -61,60 +69,72 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   ) {
     setSubmittedQuizAnswer("");
     setNumOfTotalAnswers((prev) => (prev += 1));
-    setIncorrectAnswersArray(prev => [...prev, randomQuizArray[questionNumber]]);
+    setIncorrectAnswersArray((prev) => [
+      ...prev,
+      randomQuizArray[questionNumber],
+    ]);
     setIsAnswerCorrect(false);
   }
 
   //RETURNS
-  return (
-    <div className="quizWrapper">
-      <h2>Name the Country</h2>
-      <h4>
-        Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
-      </h4>
-      <img
-        className="quizImage"
-        src={randomQuizArray[questionNumber].flags.svg}
-        height="300px"
-        alt=""
+  if (questionNumber === 11) {
+    return (
+      <QuizResultDisplay
+        incorrectAnswersArray={incorrectAnswersArray}
+        correctAnswersArray={correctAnswersArray}
       />
-      {isAnswerCorrect === true && (
-        <p className="correctAnswerText">
-          Correct! {randomQuizArray[questionNumber].name} is the right answer.
-        </p>
-      )}
-      {isAnswerCorrect === false && (
-        <p className="wrongAnswerText">
-          Wrong answer! The correct answer is{" "}
-          {randomQuizArray[questionNumber].name}.
-        </p>
-      )}
-
-      <div className="quizInputWrapper">
-        {isAnswerCorrect === null && (
-          <input
-            value={quizInputValue}
-            onChange={(el) => setQuizInputValue(el.target.value)}
-            className="userAnswerTextInput"
-            placeholder="Country name..."
-          />
+    );
+  } else {
+    return (
+      <div className="quizWrapper">
+        <h2>Name the Country</h2>
+        <h4>
+          Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
+        </h4>
+        <img
+          className="quizImage"
+          src={randomQuizArray[questionNumber].flags.svg}
+          height="300px"
+          alt=""
+        />
+        {isAnswerCorrect === true && (
+          <p className="correctAnswerText">
+            Correct! {randomQuizArray[questionNumber].name} is the right answer.
+          </p>
         )}
-        <div>
-          {quizInputValue === "" && isAnswerCorrect === null ? (
-            <button onClick={handleSkipButton} className="userAnswerSubmit">
-              Skip
-            </button>
-          ) : (
+        {isAnswerCorrect === false && (
+          <p className="wrongAnswerText">
+            Wrong answer! The correct answer is{" "}
+            {randomQuizArray[questionNumber].name}.
+          </p>
+        )}
+
+        <div className="quizInputWrapper">
+          {isAnswerCorrect === null && (
             <input
-              type="submit"
-              onClick={handleAnswerSubmit}
-              className="userAnswerSubmit"
-              disabled={quizInputValue === ""}
+              value={quizInputValue}
+              onChange={(el) => setQuizInputValue(el.target.value)}
+              className="userAnswerTextInput"
+              placeholder="Country name..."
             />
           )}
+          <div>
+            {quizInputValue === "" && isAnswerCorrect === null ? (
+              <button onClick={handleSkipButton} className="userAnswerSubmit">
+                Skip
+              </button>
+            ) : (
+              <input
+                type="submit"
+                onClick={handleAnswerSubmit}
+                className="userAnswerSubmit"
+                disabled={quizInputValue === ""}
+              />
+            )}
+          </div>
         </div>
+        <hr />
       </div>
-      <hr />
-    </div>
-  );
+    );
+  }
 };
