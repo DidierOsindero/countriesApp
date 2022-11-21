@@ -20,7 +20,8 @@ export const QuizResultDisplay = ({
           return (
             <div key={el.name}>
               {" "}
-              <img src={el.flags.svg} alt="" height="30px" /> - {el.name}
+              <img src={el.flags.svg} alt="" height="40px" />
+              <p>{el.name}</p>
             </div>
           );
         })}
@@ -31,7 +32,7 @@ export const QuizResultDisplay = ({
           return (
             <div key={el.name}>
               {" "}
-              <img src={el.flags.svg} alt="" height="50px" />
+              <img src={el.flags.svg} alt="" height="40px" />
               <p>{el.name}</p>
             </div>
           );
