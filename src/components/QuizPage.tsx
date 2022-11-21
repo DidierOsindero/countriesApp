@@ -13,14 +13,18 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const [quizInputValue, setQuizInputValue] = useState<string>("");
   const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+  const [questionNumber, setQuestionNumber] = useState<number>(0);
+  const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
+  const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
+
+  //Arrays for correct and incorrect answers to be passed down to end game display
+  const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<CountryData[]>([]);
+  const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>([]);
 
   //Create a state to store random version of countries array
   const [randomQuizArray] = useState<CountryData[]>(
     quizArray.sort(() => Math.random() - 0.5)
   );
-  const [questionNumber, setQuestionNumber] = useState<number>(0);
-  const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
-  const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
 
   //HANDLERS
   const handleAnswerSubmit = () => {
@@ -48,6 +52,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setSubmittedQuizAnswer("");
     setNumOfCorrectAnswers((prev) => (prev += 1));
     setNumOfTotalAnswers((prev) => (prev += 1));
+    setCorrectAnswersArray(prev => [...prev, randomQuizArray[questionNumber]])
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
@@ -55,11 +60,9 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     submittedQuizAnswer.toLowerCase() !== ""
   ) {
     setSubmittedQuizAnswer("");
-    setIsAnswerCorrect(false);
     setNumOfTotalAnswers((prev) => (prev += 1));
-    console.log(
-      `Wrong Answer! ${randomQuizArray[questionNumber].name} is the correct answer `
-    );
+    setIncorrectAnswersArray(prev => [...prev, randomQuizArray[questionNumber]]);
+    setIsAnswerCorrect(false);
   }
 
   //RETURNS
