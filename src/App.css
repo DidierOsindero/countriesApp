@@ -130,6 +130,10 @@ Quiz
   text-align: center;
 }
 
+.quizResultDisplayWrapper > ul {
+  padding-left: 0;
+}
+
 .navBarBottomDivider {
   margin: 0px;
 }

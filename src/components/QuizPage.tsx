@@ -42,6 +42,10 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setSubmittedQuizAnswer("");
     setQuizInputValue("");
     setNumOfTotalAnswers((prev) => (prev += 1));
+    setIncorrectAnswersArray((prev) => [
+      ...prev,
+      randomQuizArray[questionNumber],
+    ]);
     handleNextCountry();
   };
 
@@ -88,7 +92,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   }
 
   //RETURNS
-  if (questionNumber === 11) {
+  if (questionNumber === 10) {
     return (
       <QuizResultDisplay
         incorrectAnswersArray={incorrectAnswersArray}

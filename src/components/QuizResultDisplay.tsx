@@ -20,13 +20,12 @@ export const QuizResultDisplay = ({
           return (
             <div key={el.name}>
               {" "}
-              <img src={el.flags.svg} alt="" height="50px" />
-              <p>{el.name}</p>
+              <img src={el.flags.svg} alt="" height="30px" /> - {el.name}
             </div>
           );
         })}
       </ul>
-      <h4>Incorrect Answers</h4>
+      <h4>Incorrect/Skipped Answers</h4>
       <ul className="incorrectAnswersList">
         {incorrectAnswersArray.map((el) => {
           return (
