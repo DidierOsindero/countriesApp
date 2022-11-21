@@ -134,6 +134,8 @@ Quiz
   padding-left: 0;
 }
 
+
+
 .navBarBottomDivider {
   margin: 0px;
 }
@@ -151,12 +153,16 @@ Quiz
 }
 
 .userAnswerSubmit,
-.nextCountryButton {
+.nextCountryButton, .playAgainButton {
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
   font-family: inherit;
   margin-right: 10px;
+}
+
+.playAgainButton {
+  margin-top: 20px;
 }
 
 .userAnswerSubmit:active,
