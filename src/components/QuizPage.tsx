@@ -29,6 +29,13 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setTimeout(handleNextCountry, 1500);
   };
 
+  const handleSkipButton = () => {
+    setSubmittedQuizAnswer("");
+    setQuizInputValue("");
+    setNumOfTotalAnswers((prev) => (prev += 1));
+    handleNextCountry();
+  };
+
   const handleNextCountry = () => {
     setIsAnswerCorrect(null);
     setQuestionNumber((prev) => (prev += 1));
@@ -60,7 +67,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     <div className="quizWrapper">
       <h2>Name the Country</h2>
       <h4>
-        {numOfCorrectAnswers} / {numOfTotalAnswers}
+        Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
       </h4>
       <img
         className="quizImage"
@@ -75,8 +82,8 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
       )}
       {isAnswerCorrect === false && (
         <p className="wrongAnswerText">
-          Wrong answer! {randomQuizArray[questionNumber].name} is the correct
-          answer.
+          Wrong answer! The correct answer is{" "}
+          {randomQuizArray[questionNumber].name}.
         </p>
       )}
 
@@ -90,12 +97,18 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
           />
         )}
         <div>
-          <input
-            type="submit"
-            onClick={handleAnswerSubmit}
-            className="userAnswerSubmit"
-            disabled={quizInputValue === ""}
-          />
+          {quizInputValue === "" && isAnswerCorrect === null ? (
+            <button onClick={handleSkipButton} className="userAnswerSubmit">
+              Skip
+            </button>
+          ) : (
+            <input
+              type="submit"
+              onClick={handleAnswerSubmit}
+              className="userAnswerSubmit"
+              disabled={quizInputValue === ""}
+            />
+          )}
         </div>
       </div>
       <hr />
