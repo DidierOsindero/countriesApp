@@ -27,7 +27,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   );
 
   //Create a state to store random version of countries array
-  const [randomQuizArray] = useState<CountryData[]>(
+  const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
     quizArray.sort(() => Math.random() - 0.5)
   );
 
@@ -49,6 +49,17 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setIsAnswerCorrect(null);
     setQuestionNumber((prev) => (prev += 1));
   };
+
+  const handlePlayAgainButton = () => {
+    setRandomQuizArray(prev => prev.sort(() => Math.random() - 0.5));
+    setQuizInputValue("");
+    setCorrectAnswersArray([]);
+    setIncorrectAnswersArray([]);
+    setIsAnswerCorrect(null);
+    setNumOfCorrectAnswers(0);
+    setNumOfTotalAnswers(0);
+    setQuestionNumber(0);
+  }
 
   if (
     submittedQuizAnswer.toLowerCase() ===
@@ -82,6 +93,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
       <QuizResultDisplay
         incorrectAnswersArray={incorrectAnswersArray}
         correctAnswersArray={correctAnswersArray}
+        handlePlayAgainButton={handlePlayAgainButton}
       />
     );
   } else {
