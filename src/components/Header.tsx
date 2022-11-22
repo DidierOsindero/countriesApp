@@ -30,7 +30,8 @@ export const Header = ({
             Quiz
           </div>
           <div className="quizDropdownContent">
-            <div className= "capitalsDropdwnPressed">Capitals</div>
+            <div className="flagsDropdwnPressed">Flags</div>
+            <div className="capitalsDropdwnPressed">Capitals</div>
             <div className="populationDropdwnPressed">Population</div>
           </div>
         </div>
