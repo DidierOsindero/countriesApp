@@ -14,7 +14,7 @@ export const QuizPage = ({
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
   const quizArray = [...countriesArray];
-  
+
   //STATES
   const [quizInputValue, setQuizInputValue] = useState<string>("");
   const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
@@ -41,7 +41,7 @@ export const QuizPage = ({
   const [countryQuizProperty, setCountryQuizProperty] =
     useState<countryQuizPropertyType>("name");
 
-    //If navBarState changes, check what it is changed to and rerender accordingly
+  //If navBarState changes, check what it is changed to and rerender accordingly
   useEffect(() => {
     if (navBarState === "flags" || navBarState === "quiz") {
       setCountryQuizProperty("name");
@@ -52,10 +52,10 @@ export const QuizPage = ({
     }
   }, [navBarState]);
 
-//error message if data could not be fetched
-if (countriesArray.length === 0) {
-  return <h3 className="fetchDataErrorMsg">{"Could Not Fetch Data :("}</h3>
-}
+  //error message if data could not be fetched
+  if (countriesArray.length === 0) {
+    return <h3 className="fetchDataErrorMsg">{"Could Not Fetch Data :("}</h3>;
+  }
 
   //HANDLERS
   const handleAnswerSubmit = () => {

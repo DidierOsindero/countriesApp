@@ -55,7 +55,7 @@ Quiz Dropdown
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -191,7 +191,7 @@ Quiz
 }
 
 .wrongAnswerText {
-  color:  rgb(231, 1, 1);
+  color: rgb(231, 1, 1);
 }
 
 .correctAnswerText {
@@ -216,7 +216,8 @@ Quiz Results
   justify-content: center;
 }
 
-.correctQuizResultWrapper, .incorrectQuizResultWrapper {
+.correctQuizResultWrapper,
+.incorrectQuizResultWrapper {
   margin: 10px 60px;
 }
 
@@ -225,7 +226,8 @@ Quiz Results
   height: 60px;
   border: 1px solid gray;
 }
-.correctQuizResultFlagText, .incorrectQuizResultFlagText {
+.correctQuizResultFlagText,
+.incorrectQuizResultFlagText {
   margin: 0px auto;
 }
 
@@ -233,7 +235,7 @@ Quiz Results
   color: rgb(3, 231, 3);
 }
 .incorrectQuizResultFlagText {
-  color: rgb(231, 1, 1)
+  color: rgb(231, 1, 1);
 }
 /*
 FOOTER===============

@@ -24,9 +24,7 @@ interface MainContentProps {
   navBarState: NavBarStatesType;
 }
 
-export const MainContent = ({
-  navBarState
-}: MainContentProps): JSX.Element => {
+export const MainContent = ({ navBarState }: MainContentProps): JSX.Element => {
   const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
   const fetchCountryData = async () => {
@@ -39,9 +37,11 @@ export const MainContent = ({
     fetchCountryData();
   }, []);
 
-  if (navBarState === 'home') {
+  if (navBarState === "home") {
     return <HomePage countriesArray={countriesArray} />;
   } else {
-    return <QuizPage countriesArray={countriesArray} navBarState={navBarState}/>;
-  } 
+    return (
+      <QuizPage countriesArray={countriesArray} navBarState={navBarState} />
+    );
+  }
 };

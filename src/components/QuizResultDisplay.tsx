@@ -22,7 +22,7 @@ export const QuizResultDisplay = ({
           return (
             <div className="correctQuizResultWrapper" key={el.name}>
               {" "}
-              <img className="quizResultFlagIMG" src={el.flags.svg} alt=""  />
+              <img className="quizResultFlagIMG" src={el.flags.svg} alt="" />
               <p className="correctQuizResultFlagText">{el.name}</p>
             </div>
           );
