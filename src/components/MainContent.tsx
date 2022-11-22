@@ -39,6 +39,10 @@ export const MainContent = ({
     fetchCountryData();
   }, []);
 
+  //error message if data could not be fetched
+  if (countriesArray.length === 0) {
+    return <h3 className="fetchDataErrorMsg">{"Could Not Fetch Data :("}</h3>
+  }
   if (navBarState === 'home') {
     return <HomePage countriesArray={countriesArray} />;
   } else {
