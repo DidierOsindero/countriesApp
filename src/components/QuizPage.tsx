@@ -93,7 +93,7 @@ export const QuizPage = ({
 
   if (
     submittedQuizAnswer.toLowerCase() ===
-    randomQuizArray[questionNumber][countryQuizProperty].toLowerCase()
+    String(randomQuizArray[questionNumber][countryQuizProperty]).toLowerCase()
   ) {
     setSubmittedQuizAnswer("");
     setNumOfCorrectAnswers((prev) => (prev += 1));
@@ -105,7 +105,7 @@ export const QuizPage = ({
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
-      randomQuizArray[questionNumber][countryQuizProperty].toLowerCase() &&
+      String(randomQuizArray[questionNumber][countryQuizProperty]).toLowerCase() &&
     submittedQuizAnswer.toLowerCase() !== ""
   ) {
     setSubmittedQuizAnswer("");
