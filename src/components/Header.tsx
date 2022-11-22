@@ -1,7 +1,8 @@
+import {NavBarStatesType} from "../App"
 //HeaderProps
 interface HeaderProps {
   navBarState: string;
-  setNavBarState: React.Dispatch<React.SetStateAction<string>>;
+  setNavBarState: React.Dispatch<React.SetStateAction<NavBarStatesType>>;
 }
 
 export const Header = ({ navBarState, setNavBarState }: HeaderProps): JSX.Element => {

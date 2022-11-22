@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { HomePage } from "./HomePage";
 import { QuizPage } from "./QuizPage";
+import { NavBarStatesType } from "../App";
 
 //SHAPE FOR API COUNTRY OBJECT
 export interface CountryData {
@@ -20,7 +21,7 @@ interface LanguagesData {
 
 //MainContentProps
 interface MainContentProps {
-  navBarState: string;
+  navBarState: NavBarStatesType;
 }
 
 export const MainContent = ({
@@ -40,13 +41,7 @@ export const MainContent = ({
 
   if (navBarState === 'home') {
     return <HomePage countriesArray={countriesArray} />;
-  } else if (navBarState === 'quiz') {
-    return <QuizPage countriesArray={countriesArray} />;
-  } else if (navBarState === 'flags') {
-    return <QuizPage countriesArray={countriesArray} />;
-  } else if (navBarState === 'capitals') {
-    return <QuizPage countriesArray={countriesArray} />;
   } else {
-    return <QuizPage countriesArray={countriesArray} />;
-  }
+    return <QuizPage countriesArray={countriesArray} navBarState={navBarState}/>;
+  } 
 };

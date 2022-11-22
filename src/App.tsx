@@ -4,8 +4,10 @@ import { Header } from "./components/Header";
 import { MainContent } from "./components/MainContent";
 import { Footer } from "./components/Footer";
 
+export type NavBarStatesType = 'home' | 'quiz' | 'flags' | 'capitals' | 'population' ;
+
 function App(): JSX.Element {
-  const [navBarState, setNavBarState] = useState<string>('home');
+  const [navBarState, setNavBarState] = useState<NavBarStatesType>('home');
 
 
 
