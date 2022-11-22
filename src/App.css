@@ -126,14 +126,6 @@ Quiz
   margin-top: 20px;
 }
 
-.quizResultDisplayWrapper {
-  text-align: center;
-}
-
-.quizResultDisplayWrapper > ul {
-  padding-left: 0;
-}
-
 .navBarBottomDivider {
   margin: 0px;
 }
@@ -160,23 +152,56 @@ Quiz
   margin-right: 10px;
 }
 
-.playAgainButton {
-  margin-top: 20px;
-}
-
 .userAnswerSubmit:active,
 .nextCountryButton:active {
   background-color: rgb(227, 226, 226);
 }
 
 .wrongAnswerText {
-  color: red;
+  color:  rgb(231, 1, 1);
 }
 
 .correctAnswerText {
   color: rgb(3, 231, 3);
 }
 
+/*
+Quiz Results
+*/
+.playAgainButton {
+  margin-top: 20px;
+}
+
+.quizResultDisplayWrapper {
+  text-align: center;
+}
+
+.quizResultDisplayWrapper > ul {
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.correctQuizResultWrapper, .incorrectQuizResultWrapper {
+  margin: 10px 60px;
+}
+
+.quizResultFlagIMG {
+  margin: 0px 0px;
+  height: 60px;
+  border: 1px solid gray;
+}
+.correctQuizResultFlagText, .incorrectQuizResultFlagText {
+  margin: 0px auto;
+}
+
+.correctQuizResultFlagText {
+  color: rgb(3, 231, 3);
+}
+.incorrectQuizResultFlagText {
+  color: rgb(231, 1, 1)
+}
 /*
 FOOTER===============
 */
