@@ -13,7 +13,9 @@ export const QuizResultDisplay = ({
 }: QuizResultDisplayProps): JSX.Element => {
   return (
     <div className="quizResultDisplayWrapper">
-      <button className="playAgainButton" onClick={handlePlayAgainButton}>Plag Again</button>
+      <button className="playAgainButton" onClick={handlePlayAgainButton}>
+        Plag Again
+      </button>
       <h4>Correct Answers</h4>
       <ul className="correctAnswersList">
         {correctAnswersArray.map((el) => {

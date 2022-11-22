@@ -55,7 +55,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   };
 
   const handlePlayAgainButton = () => {
-    setRandomQuizArray(prev => prev.sort(() => Math.random() - 0.5));
+    setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
     setQuizInputValue("");
     setCorrectAnswersArray([]);
     setIncorrectAnswersArray([]);
@@ -63,7 +63,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setNumOfCorrectAnswers(0);
     setNumOfTotalAnswers(0);
     setQuestionNumber(0);
-  }
+  };
 
   if (
     submittedQuizAnswer.toLowerCase() ===

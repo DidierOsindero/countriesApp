@@ -41,7 +41,7 @@ export const MainContent = ({
   }, []);
 
   if (homeButton) {
-    return (<HomePage countriesArray={countriesArray} />);
+    return <HomePage countriesArray={countriesArray} />;
   } else {
     return <QuizPage countriesArray={countriesArray} />;
   }
