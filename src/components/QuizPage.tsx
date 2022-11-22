@@ -50,6 +50,7 @@ export const QuizPage = ({
     } else if (navBarState === "population") {
       setCountryQuizProperty("population");
     }
+    handlePlayAgainButton();
   }, [navBarState]);
 
   //error message if data could not be fetched
@@ -129,7 +130,7 @@ export const QuizPage = ({
   } else {
     return (
       <div className="quizWrapper">
-        <h2>Name the Country</h2>
+        <h2>Name the {navBarState}</h2>
         <h4>
           Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
         </h4>
