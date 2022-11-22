@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
 import { NavBarStatesType } from "../App";
@@ -14,7 +14,7 @@ export const QuizPage = ({
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
   const quizArray = [...countriesArray];
-
+  
   //STATES
   const [quizInputValue, setQuizInputValue] = useState<string>("");
   const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
@@ -40,12 +40,21 @@ export const QuizPage = ({
   type countryQuizPropertyType = "name" | "capital" | "population";
   const [countryQuizProperty, setCountryQuizProperty] =
     useState<countryQuizPropertyType>("name");
-  if (navBarState === "flags" || navBarState === "quiz") {
-    setCountryQuizProperty("name");
-  } else if (navBarState === "capitals") {
-    setCountryQuizProperty("capital");
-  } else if (navBarState === "population") {
-    setCountryQuizProperty("population");
+
+    //If navBarState changes, check what it is changed to and rerender accordingly
+  useEffect(() => {
+    if (navBarState === "flags" || navBarState === "quiz") {
+      setCountryQuizProperty("name");
+    } else if (navBarState === "capitals") {
+      setCountryQuizProperty("capital");
+    } else if (navBarState === "population") {
+      setCountryQuizProperty("population");
+    }
+  }, [navBarState]);
+
+  //error message if data could not be fetched
+  if (countriesArray.length === 0) {
+    return <h3>{"Could Not Fetch Data :("}</h3>
   }
 
   //HANDLERS
