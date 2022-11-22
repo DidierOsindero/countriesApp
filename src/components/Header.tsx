@@ -22,11 +22,17 @@ export const Header = ({
         >
           Home
         </div>
-        <div
-          className={quizButton ? "quizButtonPressed" : "quizButton"}
-          onClick={handleQuizButton}
-        >
-          Quiz
+        <div className="quizDropdown">
+          <div
+            className={quizButton ? "quizButtonPressed" : "quizButton"}
+            onClick={handleQuizButton}
+          >
+            Quiz
+          </div>
+          <div className="quizDropdownContent">
+            <div className= "capitalsDropdwnPressed">Capitals</div>
+            <div className="populationDropdwnPressed">Population</div>
+          </div>
         </div>
       </div>
       <hr className="navBarBottomDivider" />
