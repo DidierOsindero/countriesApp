@@ -1,38 +1,51 @@
 //HeaderProps
 interface HeaderProps {
-  handleHomeButton: () => void;
-  homeButton: boolean;
-  handleQuizButton: () => void;
-  quizButton: boolean;
+  navBarState: string;
+  setNavBarState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Header = ({
-  handleHomeButton,
-  homeButton,
-  handleQuizButton,
-  quizButton,
-}: HeaderProps): JSX.Element => {
+export const Header = ({ navBarState, setNavBarState }: HeaderProps): JSX.Element => {
+  const handleHomeButton = () => {
+    setNavBarState("home");
+  };
+
+  const handleQuizButton = () => {
+    setNavBarState("quiz");
+  };
+
+  const handleFlagsDrpDwn = () => {
+    setNavBarState("flags");
+  };
+
+  const handleCapitalsDrpDwn = () => {
+    setNavBarState("capitals");
+  };
+
+  const handlePopulationDrpDwn = () => {
+    setNavBarState("population");
+  };
+
   return (
     <div className="headerWrapper">
       <h1>Countries of the World</h1>
       <div className="navBarWrapper">
         <div
-          className={homeButton ? "homeButtonPressed" : "homeButton"}
+          className={navBarState === 'home' ? "homeButtonPressed" : "homeButton"}
           onClick={handleHomeButton}
         >
           Home
         </div>
         <div className="quizDropdown">
           <div
-            className={quizButton ? "quizButtonPressed" : "quizButton"}
+            className={navBarState === 'quiz' ? "quizButtonPressed" : "quizButton"}
             onClick={handleQuizButton}
           >
             Quiz
           </div>
           <div className="quizDropdownContent">
-            <div className="flagsDropdwnPressed">Flags</div>
-            <div className="capitalsDropdwnPressed">Capitals</div>
-            <div className="populationDropdwnPressed">Population</div>
+            <div className="flagsDropdwnPressed" onClick={handleFlagsDrpDwn}>Flags</div>
+            <div className="capitalsDropdwnPressed" onClick={handleCapitalsDrpDwn}>Capitals</div>
+            <div className="populationDropdwnPressed" onClick={handlePopulationDrpDwn}>Population</div>
           </div>
         </div>
       </div>

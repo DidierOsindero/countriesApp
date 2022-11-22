@@ -20,13 +20,11 @@ interface LanguagesData {
 
 //MainContentProps
 interface MainContentProps {
-  homeButton: boolean;
-  quizButton: boolean;
+  navBarState: string;
 }
 
 export const MainContent = ({
-  homeButton,
-  quizButton,
+  navBarState
 }: MainContentProps): JSX.Element => {
   const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
@@ -40,8 +38,14 @@ export const MainContent = ({
     fetchCountryData();
   }, []);
 
-  if (homeButton) {
+  if (navBarState === 'home') {
     return <HomePage countriesArray={countriesArray} />;
+  } else if (navBarState === 'quiz') {
+    return <QuizPage countriesArray={countriesArray} />;
+  } else if (navBarState === 'flags') {
+    return <QuizPage countriesArray={countriesArray} />;
+  } else if (navBarState === 'capitals') {
+    return <QuizPage countriesArray={countriesArray} />;
   } else {
     return <QuizPage countriesArray={countriesArray} />;
   }
