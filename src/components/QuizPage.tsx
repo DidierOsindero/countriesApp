@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
+import { NavBarStatesType } from "../App";
 
 interface QuizPageProps {
   countriesArray: CountryData[];
+  navBarState: NavBarStatesType;
 }
 
-export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
+export const QuizPage = ({
+  countriesArray,
+  navBarState,
+}: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
   const quizArray = [...countriesArray];
 
@@ -30,6 +35,18 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
   const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
     quizArray.sort(() => Math.random() - 0.5)
   );
+
+  //State to store what country property is being quized
+  type countryQuizPropertyType = "name" | "capital" | "population";
+  const [countryQuizProperty, setCountryQuizProperty] =
+    useState<countryQuizPropertyType>("name");
+  if (navBarState === "flags" || navBarState === "quiz") {
+    setCountryQuizProperty("name");
+  } else if (navBarState === "capitals") {
+    setCountryQuizProperty("capital");
+  } else if (navBarState === "population") {
+    setCountryQuizProperty("population");
+  }
 
   //HANDLERS
   const handleAnswerSubmit = () => {
@@ -67,7 +84,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
 
   if (
     submittedQuizAnswer.toLowerCase() ===
-    randomQuizArray[questionNumber].name.toLowerCase()
+    randomQuizArray[questionNumber][countryQuizProperty].toLowerCase()
   ) {
     setSubmittedQuizAnswer("");
     setNumOfCorrectAnswers((prev) => (prev += 1));
@@ -79,7 +96,7 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
     setIsAnswerCorrect(true);
   } else if (
     submittedQuizAnswer.toLowerCase() !==
-      randomQuizArray[questionNumber].name.toLowerCase() &&
+      randomQuizArray[questionNumber][countryQuizProperty].toLowerCase() &&
     submittedQuizAnswer.toLowerCase() !== ""
   ) {
     setSubmittedQuizAnswer("");
@@ -115,13 +132,14 @@ export const QuizPage = ({ countriesArray }: QuizPageProps): JSX.Element => {
         />
         {isAnswerCorrect === true && (
           <p className="correctAnswerText">
-            Correct! {randomQuizArray[questionNumber].name} is the right answer.
+            Correct! {randomQuizArray[questionNumber][countryQuizProperty]} is
+            the right answer.
           </p>
         )}
         {isAnswerCorrect === false && (
           <p className="wrongAnswerText">
             Wrong answer! The correct answer is{" "}
-            {randomQuizArray[questionNumber].name}.
+            {randomQuizArray[questionNumber][countryQuizProperty]}.
           </p>
         )}
 
