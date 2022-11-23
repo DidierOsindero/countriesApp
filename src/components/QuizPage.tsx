@@ -123,11 +123,11 @@ export const QuizPage = ({
   } else if (navBarState === "population") {
     if (
       submittedQuizAnswer !== "" &&
-      (Number(submittedQuizAnswer) >=
+      Number(submittedQuizAnswer) >=
         Number(randomQuizArray[questionNumber][countryQuizProperty]) -
           1000000 &&
       Number(submittedQuizAnswer) <=
-        Number(randomQuizArray[questionNumber][countryQuizProperty]) + 1000000)
+        Number(randomQuizArray[questionNumber][countryQuizProperty]) + 1000000
     ) {
       setSubmittedQuizAnswer("");
       setNumOfCorrectAnswers((prev) => (prev += 1));
@@ -142,8 +142,9 @@ export const QuizPage = ({
       (Number(submittedQuizAnswer) <
         Number(randomQuizArray[questionNumber][countryQuizProperty]) -
           1000000 ||
-      Number(submittedQuizAnswer) >
-        Number(randomQuizArray[questionNumber][countryQuizProperty]) + 1000000)
+        Number(submittedQuizAnswer) >
+          Number(randomQuizArray[questionNumber][countryQuizProperty]) +
+            1000000)
     ) {
       setSubmittedQuizAnswer("");
       setNumOfTotalAnswers((prev) => (prev += 1));
@@ -172,17 +173,26 @@ export const QuizPage = ({
         )}
         {navBarState === "capitals" && <h2>Name the Capital</h2>}
         {navBarState === "population" && <h2>Guess the Population Size</h2>}
-        <h4>
-          Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
-        </h4>
+
+        <p>
+          <b>
+            Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
+          </b>
+        </p>
+        <p>
+          <i>Question {questionNumber + 1}:</i>
+        </p>
+
         <img
           className="quizImage"
           src={randomQuizArray[questionNumber].flags.svg}
           height="300px"
           alt=""
         />
-        {isAnswerCorrect === true && 
-          navBarState !== "population" && (
+        {navBarState !== 'flags' && navBarState !== 'quiz' && (
+          <h3>{randomQuizArray[questionNumber].name}</h3>
+        )}
+        {isAnswerCorrect === true && navBarState !== "population" && (
           <p className="correctAnswerText">
             Correct! {randomQuizArray[questionNumber][countryQuizProperty]} is
             the right answer.
@@ -190,14 +200,12 @@ export const QuizPage = ({
         )}
 
         {isAnswerCorrect === true &&
-          navBarState === "population"  && Number(submittedQuizAnswer) ===
-          Number(randomQuizArray[questionNumber][countryQuizProperty]) &&(
+          navBarState === "population" &&
+          Number(submittedQuizAnswer) ===
+            Number(randomQuizArray[questionNumber][countryQuizProperty]) && (
             <p className="correctAnswerText">
-              Correct!{" "}
-              {randomQuizArray[questionNumber][
-                countryQuizProperty
-              ]}{" "}
-              is the right answer.
+              Correct! {randomQuizArray[questionNumber][countryQuizProperty]} is
+              the right answer.
             </p>
           )}
 
@@ -213,11 +221,14 @@ export const QuizPage = ({
               .
             </p>
           )}
-          
+
         {isAnswerCorrect === false && (
           <p className="wrongAnswerText">
             Wrong answer! The correct answer is{" "}
-            {randomQuizArray[questionNumber][countryQuizProperty].toLocaleString()}.
+            {randomQuizArray[questionNumber][
+              countryQuizProperty
+            ].toLocaleString()}
+            .
           </p>
         )}
 
@@ -227,7 +238,7 @@ export const QuizPage = ({
               value={quizInputValue}
               onChange={(el) => setQuizInputValue(el.target.value)}
               className="userAnswerTextInput"
-              placeholder="Country name..."
+              placeholder={navBarState === 'population' ? " Population size...": (navBarState === "capitals" ? " Capital city...":" Country name...")}
             />
           )}
           <div>
