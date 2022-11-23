@@ -92,30 +92,67 @@ export const QuizPage = ({
     setQuestionNumber(0);
   };
 
-  if (
-    submittedQuizAnswer.toLowerCase() ===
-    String(randomQuizArray[questionNumber][countryQuizProperty]).toLowerCase()
-  ) {
-    setSubmittedQuizAnswer("");
-    setNumOfCorrectAnswers((prev) => (prev += 1));
-    setNumOfTotalAnswers((prev) => (prev += 1));
-    setCorrectAnswersArray((prev) => [
-      ...prev,
-      randomQuizArray[questionNumber],
-    ]);
-    setIsAnswerCorrect(true);
-  } else if (
-    submittedQuizAnswer.toLowerCase() !==
-      String(randomQuizArray[questionNumber][countryQuizProperty]).toLowerCase() &&
-    submittedQuizAnswer.toLowerCase() !== ""
-  ) {
-    setSubmittedQuizAnswer("");
-    setNumOfTotalAnswers((prev) => (prev += 1));
-    setIncorrectAnswersArray((prev) => [
-      ...prev,
-      randomQuizArray[questionNumber],
-    ]);
-    setIsAnswerCorrect(false);
+  if (navBarState !== "population") {
+    if (
+      submittedQuizAnswer.toLowerCase() ===
+      String(randomQuizArray[questionNumber][countryQuizProperty]).toLowerCase()
+    ) {
+      setSubmittedQuizAnswer("");
+      setNumOfCorrectAnswers((prev) => (prev += 1));
+      setNumOfTotalAnswers((prev) => (prev += 1));
+      setCorrectAnswersArray((prev) => [
+        ...prev,
+        randomQuizArray[questionNumber],
+      ]);
+      setIsAnswerCorrect(true);
+    } else if (
+      submittedQuizAnswer.toLowerCase() !==
+        String(
+          randomQuizArray[questionNumber][countryQuizProperty]
+        ).toLowerCase() &&
+      submittedQuizAnswer.toLowerCase() !== ""
+    ) {
+      setSubmittedQuizAnswer("");
+      setNumOfTotalAnswers((prev) => (prev += 1));
+      setIncorrectAnswersArray((prev) => [
+        ...prev,
+        randomQuizArray[questionNumber],
+      ]);
+      setIsAnswerCorrect(false);
+    }
+  } else if (navBarState === "population") {
+    if (
+      submittedQuizAnswer !== "" &&
+      (Number(submittedQuizAnswer) >=
+        Number(randomQuizArray[questionNumber][countryQuizProperty]) -
+          1000000 &&
+      Number(submittedQuizAnswer) <=
+        Number(randomQuizArray[questionNumber][countryQuizProperty]) + 1000000)
+    ) {
+      setSubmittedQuizAnswer("");
+      setNumOfCorrectAnswers((prev) => (prev += 1));
+      setNumOfTotalAnswers((prev) => (prev += 1));
+      setCorrectAnswersArray((prev) => [
+        ...prev,
+        randomQuizArray[questionNumber],
+      ]);
+      setIsAnswerCorrect(true);
+    } else if (
+      submittedQuizAnswer.toLowerCase() !== "" &&
+      (Number(submittedQuizAnswer) <
+        Number(randomQuizArray[questionNumber][countryQuizProperty]) -
+          1000000 ||
+      Number(submittedQuizAnswer) >
+        Number(randomQuizArray[questionNumber][countryQuizProperty]) + 1000000)
+    ) {
+      setSubmittedQuizAnswer("");
+      setNumOfTotalAnswers((prev) => (prev += 1));
+      setIncorrectAnswersArray((prev) => [
+        ...prev,
+        randomQuizArray[questionNumber],
+      ]);
+      setIsAnswerCorrect(false);
+    }
   }
 
   //RETURNS
@@ -130,9 +167,11 @@ export const QuizPage = ({
   } else {
     return (
       <div className="quizWrapper">
-        {(navBarState === 'quiz'|| navBarState === 'flags') && <h2>Name the Country</h2>}
-        {navBarState === 'capitals' && <h2>Name the Capital</h2>}
-        {navBarState === 'population' && <h2>Guess the Population Size</h2>}
+        {(navBarState === "quiz" || navBarState === "flags") && (
+          <h2>Name the Country</h2>
+        )}
+        {navBarState === "capitals" && <h2>Name the Capital</h2>}
+        {navBarState === "population" && <h2>Guess the Population Size</h2>}
         <h4>
           Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
         </h4>
@@ -142,16 +181,43 @@ export const QuizPage = ({
           height="300px"
           alt=""
         />
-        {isAnswerCorrect === true && (
+        {isAnswerCorrect === true && 
+          navBarState !== "population" && (
           <p className="correctAnswerText">
             Correct! {randomQuizArray[questionNumber][countryQuizProperty]} is
             the right answer.
           </p>
         )}
+
+        {isAnswerCorrect === true &&
+          navBarState === "population"  && Number(submittedQuizAnswer) ===
+          Number(randomQuizArray[questionNumber][countryQuizProperty]) &&(
+            <p className="correctAnswerText">
+              Correct!{" "}
+              {randomQuizArray[questionNumber][
+                countryQuizProperty
+              ]}{" "}
+              is the right answer.
+            </p>
+          )}
+
+        {isAnswerCorrect === true &&
+          navBarState === "population" &&
+          Number(submittedQuizAnswer) !==
+            Number(randomQuizArray[questionNumber][countryQuizProperty]) && (
+            <p className="correctAnswerText">
+              Well done! You were within range of the exact population:{" "}
+              {randomQuizArray[questionNumber][
+                countryQuizProperty
+              ].toLocaleString()}
+              .
+            </p>
+          )}
+          
         {isAnswerCorrect === false && (
           <p className="wrongAnswerText">
             Wrong answer! The correct answer is{" "}
-            {randomQuizArray[questionNumber][countryQuizProperty]}.
+            {randomQuizArray[questionNumber][countryQuizProperty].toLocaleString()}.
           </p>
         )}
 
