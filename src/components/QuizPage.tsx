@@ -130,7 +130,9 @@ export const QuizPage = ({
   } else {
     return (
       <div className="quizWrapper">
-        <h2>Name the {navBarState}</h2>
+        {(navBarState === 'quiz'|| navBarState === 'flags') && <h2>Name the Country</h2>}
+        {navBarState === 'capitals' && <h2>Name the Capital</h2>}
+        {navBarState === 'population' && <h2>Guess the Population Size</h2>}
         <h4>
           Score: {numOfCorrectAnswers} / {numOfTotalAnswers}
         </h4>
