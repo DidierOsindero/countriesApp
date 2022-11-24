@@ -27,8 +27,7 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
     if (countriesArray.length === 0) {
       return <h3 className="fetchDataErrorMsg">{"Could Not Fetch Data :("}</h3>;
     }
-  }, 3000)
-  
+  }, 3000);
 
   return (
     <div className="mainContentWrapper">

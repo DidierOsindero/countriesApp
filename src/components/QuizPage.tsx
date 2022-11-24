@@ -72,10 +72,7 @@ export const QuizPage = ({
     setSubmittedQuizAnswer("");
     setQuizInputValue("");
     setNumOfTotalAnswers((prev) => (prev += 1));
-    setIncorrectAnswersArray((prev) => [
-      ...prev,
-      currentCountry,
-    ]);
+    setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
     handleNextCountry();
   };
 
@@ -103,58 +100,41 @@ export const QuizPage = ({
       setSubmittedQuizAnswer("");
       setNumOfCorrectAnswers((prev) => (prev += 1));
       setNumOfTotalAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [
-        ...prev,
-        currentCountry,
-      ]);
+      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
     } else if (
       submittedQuizAnswer.toLowerCase() !==
-        String(
-          currentCountry[countryQuizProperty]
-        ).toLowerCase() &&
+        String(currentCountry[countryQuizProperty]).toLowerCase() &&
       submittedQuizAnswer.toLowerCase() !== ""
     ) {
       setSubmittedQuizAnswer("");
       setNumOfTotalAnswers((prev) => (prev += 1));
-      setIncorrectAnswersArray((prev) => [
-        ...prev,
-        currentCountry,
-      ]);
+      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
     }
   } else if (navBarState === "population") {
     if (
       submittedQuizAnswer !== "" &&
       Number(submittedQuizAnswer) >=
-        Number(currentCountry[countryQuizProperty]) -
-          1000000 &&
+        Number(currentCountry[countryQuizProperty]) - 1000000 &&
       Number(submittedQuizAnswer) <=
         Number(currentCountry[countryQuizProperty]) + 1000000
     ) {
       setSubmittedQuizAnswer("");
       setNumOfCorrectAnswers((prev) => (prev += 1));
       setNumOfTotalAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [
-        ...prev,
-        currentCountry,
-      ]);
+      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
     } else if (
       submittedQuizAnswer.toLowerCase() !== "" &&
       (Number(submittedQuizAnswer) <
-        Number(currentCountry[countryQuizProperty]) -
-          1000000 ||
+        Number(currentCountry[countryQuizProperty]) - 1000000 ||
         Number(submittedQuizAnswer) >
-          Number(currentCountry[countryQuizProperty]) +
-            1000000)
+          Number(currentCountry[countryQuizProperty]) + 1000000)
     ) {
       setSubmittedQuizAnswer("");
       setNumOfTotalAnswers((prev) => (prev += 1));
-      setIncorrectAnswersArray((prev) => [
-        ...prev,
-        currentCountry,
-      ]);
+      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
     }
   }
@@ -192,13 +172,12 @@ export const QuizPage = ({
           height="300px"
           alt=""
         />
-        {navBarState !== 'flags' && navBarState !== 'quiz' && (
+        {navBarState !== "flags" && navBarState !== "quiz" && (
           <h3>{currentCountry.name}</h3>
         )}
         {isAnswerCorrect === true && navBarState !== "population" && (
           <p className="correctAnswerText">
-            Correct! {currentCountry[countryQuizProperty]} is
-            the right answer.
+            Correct! {currentCountry[countryQuizProperty]} is the right answer.
           </p>
         )}
 
@@ -207,8 +186,8 @@ export const QuizPage = ({
           Number(submittedQuizAnswer) ===
             Number(currentCountry[countryQuizProperty]) && (
             <p className="correctAnswerText">
-              Correct! {currentCountry[countryQuizProperty]} is
-              the right answer.
+              Correct! {currentCountry[countryQuizProperty]} is the right
+              answer.
             </p>
           )}
 
@@ -218,20 +197,14 @@ export const QuizPage = ({
             Number(currentCountry[countryQuizProperty]) && (
             <p className="correctAnswerText">
               Well done! You were within range of the exact population:{" "}
-              {currentCountry[
-                countryQuizProperty
-              ].toLocaleString()}
-              .
+              {currentCountry[countryQuizProperty].toLocaleString()}.
             </p>
           )}
 
         {isAnswerCorrect === false && (
           <p className="wrongAnswerText">
             Wrong answer! The correct answer is{" "}
-            {currentCountry[
-              countryQuizProperty
-            ].toLocaleString()}
-            .
+            {currentCountry[countryQuizProperty].toLocaleString()}.
           </p>
         )}
 
@@ -241,7 +214,13 @@ export const QuizPage = ({
               value={quizInputValue}
               onChange={(el) => setQuizInputValue(el.target.value)}
               className="userAnswerTextInput"
-              placeholder={navBarState === 'population' ? " Population size...": (navBarState === "capitals" ? " Capital city...":" Country name...")}
+              placeholder={
+                navBarState === "population"
+                  ? " Population size..."
+                  : navBarState === "capitals"
+                  ? " Capital city..."
+                  : " Country name..."
+              }
             />
           )}
           <div>
