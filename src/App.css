@@ -152,17 +152,17 @@ MAIN_CONTENT===============
   width: 250px;
   margin: 20px;
   text-align: center;
-  box-shadow: 10px 10px 20px -5px rgb(52, 52, 52) ;
-  transition: 700ms;
+  box-shadow: 10px 10px 20px -5px rgb(52, 52, 52);
+  transition: border 500ms, backgroundColor 500ms, box-shadow 200ms ;
 }
 
 .countryWrapper:hover {
   background-color: white;
   border: 2px solid rgb(31, 31, 31);
-  border-radius: 20px;
-  width: 250px;
-  margin: 20px;
-  text-align: center;
+}
+
+.countryWrapper:active {
+  box-shadow: 0px 0px 20px -5px rgb(52, 52, 52);
 }
 
 .homePageCountryIMG {
