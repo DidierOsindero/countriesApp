@@ -151,6 +151,7 @@ export const QuizPage = ({
         numOfCorrectAnswers={numOfCorrectAnswers}
         numOfQuestionPerRound={numOfQuestionPerRound}
         handlePlayAgainButton={handlePlayAgainButton}
+        navBarState={navBarState}
       />
     );
   } else {

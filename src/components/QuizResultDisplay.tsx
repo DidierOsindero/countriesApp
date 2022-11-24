@@ -6,12 +6,13 @@ interface QuizResultDisplayProps {
   numOfCorrectAnswers: number;
   numOfQuestionPerRound: number;
   handlePlayAgainButton: () => void;
+  navBarState: string;
 }
 
 export const QuizResultDisplay = ({
   incorrectAnswersArray,
   correctAnswersArray, numOfCorrectAnswers, numOfQuestionPerRound,
-  handlePlayAgainButton,
+  handlePlayAgainButton, navBarState
 }: QuizResultDisplayProps): JSX.Element => {
   return (
     <div className="quizResultDisplayWrapper">
@@ -24,7 +25,7 @@ export const QuizResultDisplay = ({
             <div className="correctQuizResultWrapper" key={el.name}>
               {" "}
               <img className="quizResultFlagIMG" src={el.flags.svg} alt="" />
-              <p className="correctQuizResultFlagText">{el.name}</p>
+              <p className="correctQuizResultFlagText">{el.name} {navBarState === "capitals" && <>- {el.capital}</>} {navBarState === "population" && <>- {el.population.toLocaleString()}</>}</p>
             </div>
           );
         })}
@@ -36,7 +37,7 @@ export const QuizResultDisplay = ({
             <div className="incorrectQuizResultWrapper" key={el.name}>
               {" "}
               <img className="quizResultFlagIMG" src={el.flags.svg} alt="" />
-              <p className="incorrectQuizResultFlagText">{el.name}</p>
+              <p className="incorrectQuizResultFlagText">{el.name} {navBarState === "capitals" && <>- {el.capital}</>} {navBarState === "population" && <>- {el.population.toLocaleString()}</>} </p>
             </div>
           );
         })}
