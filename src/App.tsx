@@ -4,29 +4,20 @@ import { Header } from "./components/Header";
 import { MainContent } from "./components/MainContent";
 import { Footer } from "./components/Footer";
 
+export type NavBarStatesType =
+  | "home"
+  | "quiz"
+  | "flags"
+  | "capitals"
+  | "population";
+
 function App(): JSX.Element {
-  const [homeButton, setHomeButton] = useState<boolean>(true);
-  const [quizButton, setQuizButton] = useState<boolean>(false);
-
-  const handleHomeButton = () => {
-    setHomeButton(true);
-    setQuizButton(false);
-  };
-
-  const handleQuizButton = () => {
-    setHomeButton(false);
-    setQuizButton(true);
-  };
+  const [navBarState, setNavBarState] = useState<NavBarStatesType>("home");
 
   return (
     <div className="app">
-      <Header
-        handleHomeButton={handleHomeButton}
-        handleQuizButton={handleQuizButton}
-        homeButton={homeButton}
-        quizButton={quizButton}
-      />
-      <MainContent homeButton={homeButton} quizButton={quizButton} />
+      <Header navBarState={navBarState} setNavBarState={setNavBarState} />
+      <MainContent navBarState={navBarState} />
       <Footer />
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { HomePage } from "./HomePage";
 import { QuizPage } from "./QuizPage";
+import { NavBarStatesType } from "../App";
 
 //SHAPE FOR API COUNTRY OBJECT
 export interface CountryData {
@@ -20,14 +21,10 @@ interface LanguagesData {
 
 //MainContentProps
 interface MainContentProps {
-  homeButton: boolean;
-  quizButton: boolean;
+  navBarState: NavBarStatesType;
 }
 
-export const MainContent = ({
-  homeButton,
-  quizButton,
-}: MainContentProps): JSX.Element => {
+export const MainContent = ({ navBarState }: MainContentProps): JSX.Element => {
   const [countriesArray, setCountriesArray] = useState<CountryData[]>([]);
 
   const fetchCountryData = async () => {
@@ -40,9 +37,11 @@ export const MainContent = ({
     fetchCountryData();
   }, []);
 
-  if (homeButton) {
+  if (navBarState === "home") {
     return <HomePage countriesArray={countriesArray} />;
   } else {
-    return <QuizPage countriesArray={countriesArray} />;
+    return (
+      <QuizPage countriesArray={countriesArray} navBarState={navBarState} />
+    );
   }
 };
