@@ -17,9 +17,6 @@ export const QuizResultDisplay = ({
     <div className="quizResultDisplayWrapper">
       {numOfCorrectAnswers > numOfQuestionPerRound /2 && <h3 className="quizResultsWellDoneMessage">Well done! <br/> You got {numOfCorrectAnswers} answers correct out of {numOfQuestionPerRound} questions!</h3>}
       {numOfCorrectAnswers <= numOfQuestionPerRound /2 && <h3 className="quizResultsBetterLuckMessage">Better luck next time... <br/>You got {numOfCorrectAnswers} answers correct out of {numOfQuestionPerRound} questions!</h3>}
-      <button className="playAgainButton" onClick={handlePlayAgainButton}>
-        Plag Again
-      </button>
       <h4 className="correctAnswersText">Correct Answers</h4>
       <ul className="correctAnswersList">
         {correctAnswersArray.map((el) => {
@@ -44,6 +41,9 @@ export const QuizResultDisplay = ({
           );
         })}
       </ul>
+      <button className="playAgainButton" onClick={handlePlayAgainButton}>
+        Plag Again
+      </button>
     </div>
   );
 };

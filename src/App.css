@@ -225,9 +225,6 @@ Quiz
 /*
 Quiz Results
 */
-.playAgainButton {
-  margin-top: 20px;
-}
 
 .quizResultDisplayWrapper {
   text-align: center;
@@ -240,7 +237,8 @@ Quiz Results
   justify-content: center;
 }
 
-.quizResultsWellDoneMessage, .quizResultsBetterLuckMessage {
+.quizResultsWellDoneMessage,
+.quizResultsBetterLuckMessage {
   margin-bottom: 0px;
   margin-top: 10px;
 }
@@ -271,8 +269,13 @@ Quiz Results
 .correctQuizResultFlagText {
   color: rgb(3, 231, 3);
 }
+
 .incorrectQuizResultFlagText {
   color: rgb(231, 1, 1);
+}
+
+.playAgainButton {
+  margin-bottom: 20px;
 }
 /*
 FOOTER===============
