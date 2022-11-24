@@ -115,6 +115,7 @@ MAIN_CONTENT===============
   background-color: rgb(255, 255, 255);
   margin: 0px 5px;
   font-family: inherit;
+  transition: 500ms;
 }
 
 .smallCountryFilterPressed {
@@ -132,10 +133,6 @@ MAIN_CONTENT===============
   margin: 0px 5px;
   font-family: inherit;
   color: darkblue;
-  border: 1.5px solid rgb(31, 31, 31);
-}
-
-.filterButtonsWrapper > button:hover {
   border: 1.5px solid rgb(31, 31, 31);
 }
 
