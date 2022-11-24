@@ -62,9 +62,11 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
       <div className="countryListWrapper">
         {countriesArray
           .filter((country) => {
+            
             const isMatchingSearch = country.name
               .toLowerCase()
               .includes(searchText.toLowerCase());
+
             const isBigCountry = Number(country.population) > 50000000;
             const isSmallCountry = Number(country.population) < 5000000;
             if (bigCountryFilter && smallCountryFilter) {
