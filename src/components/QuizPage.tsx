@@ -158,9 +158,7 @@ export const QuizPage = ({
         {navBarState === "population" && <h2>Guess the Population Size</h2>}
 
         <p>
-          <b>
-            Score: {numOfCorrectAnswers}
-          </b>
+          <b>Score: {numOfCorrectAnswers}</b>
         </p>
         <p>
           <i>Question {questionNumber + 1} of 10</i>

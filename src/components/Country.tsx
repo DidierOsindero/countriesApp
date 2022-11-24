@@ -17,7 +17,11 @@ export const Country = ({ currentCountry }: CountryProps): JSX.Element => {
       <div className="countryWrapper">
         <h3>{currentCountry.name}</h3>
         <div className="countryContentWrapper" onClick={handleIsClicked}>
-          <img className="homePageCountryIMG" src={currentCountry.flags.svg} alt="" />
+          <img
+            className="homePageCountryIMG"
+            src={currentCountry.flags.svg}
+            alt=""
+          />
           <p>
             <b>Population:</b> {currentCountry.population.toLocaleString()}
           </p>
