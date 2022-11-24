@@ -74,7 +74,6 @@ export const Header = ({
           </div>
         </div>
       </div>
-      <hr className="navBarBottomDivider" />
     </div>
   );
 };
