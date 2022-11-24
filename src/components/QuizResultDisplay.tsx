@@ -3,12 +3,13 @@ import { CountryData } from "./MainContent";
 interface QuizResultDisplayProps {
   incorrectAnswersArray: CountryData[];
   correctAnswersArray: CountryData[];
+  numOfCorrectAnswers: number;
   handlePlayAgainButton: () => void;
 }
 
 export const QuizResultDisplay = ({
   incorrectAnswersArray,
-  correctAnswersArray,
+  correctAnswersArray, numOfCorrectAnswers,
   handlePlayAgainButton,
 }: QuizResultDisplayProps): JSX.Element => {
   return (

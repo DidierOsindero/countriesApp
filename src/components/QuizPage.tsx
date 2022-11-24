@@ -61,6 +61,9 @@ export const QuizPage = ({
   //currentCountry variable (non-re-rendering)
   const currentCountry = randomQuizArray[questionNumber];
 
+  //number of questions per round variable
+  const numOfQuestionPerRound = 10;
+
   //HANDLERS
   const handleAnswerSubmit = () => {
     setSubmittedQuizAnswer(quizInputValue);
@@ -140,12 +143,13 @@ export const QuizPage = ({
   }
 
   //RETURNS
-  if (questionNumber === 10) {
+  if (questionNumber === numOfQuestionPerRound) {
     return (
       <QuizResultDisplay
         incorrectAnswersArray={incorrectAnswersArray}
         correctAnswersArray={correctAnswersArray}
         handlePlayAgainButton={handlePlayAgainButton}
+        numOfCorrectAnswers={numOfCorrectAnswers}
       />
     );
   } else {
@@ -161,7 +165,7 @@ export const QuizPage = ({
           <b>Score: {numOfCorrectAnswers}</b>
         </p>
         <p>
-          <i>Question {questionNumber + 1} of 10</i>
+          <i>Question {questionNumber + 1} of {numOfQuestionPerRound}</i>
         </p>
 
         <img
@@ -231,7 +235,6 @@ export const QuizPage = ({
                 type="submit"
                 onClick={handleAnswerSubmit}
                 className="userAnswerSubmit"
-                disabled={quizInputValue === ""}
               />
             )}
           </div>
