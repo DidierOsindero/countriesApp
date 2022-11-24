@@ -25,7 +25,7 @@ export const QuizResultDisplay = ({
             <div className="correctQuizResultWrapper" key={el.name}>
               {" "}
               <img className="quizResultFlagIMG" src={el.flags.svg} alt="" />
-              <p className="correctQuizResultFlagText">{el.name} {navBarState === "capitals" && <>- {el.capital}</>} {navBarState === "population" && <>- {el.population.toLocaleString()}</>}</p>
+              <p className="correctQuizResultFlagText">{el.name} {navBarState === "capitals" && <div>- {el.capital}</div>} {navBarState === "population" && <div>- {el.population.toLocaleString()}</div>}</p>
             </div>
           );
         })}
@@ -37,7 +37,7 @@ export const QuizResultDisplay = ({
             <div className="incorrectQuizResultWrapper" key={el.name}>
               {" "}
               <img className="quizResultFlagIMG" src={el.flags.svg} alt="" />
-              <p className="incorrectQuizResultFlagText">{el.name} {navBarState === "capitals" && <>- {el.capital}</>} {navBarState === "population" && <>- {el.population.toLocaleString()}</>} </p>
+              <p className="incorrectQuizResultFlagText">{el.name} {navBarState === "capitals" && <div>- {el.capital}</div>} {navBarState === "population" && <div>- {el.population.toLocaleString()}</div>} </p>
             </div>
           );
         })}
