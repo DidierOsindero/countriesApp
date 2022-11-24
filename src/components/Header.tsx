@@ -44,7 +44,7 @@ export const Header = ({
         <div className="quizDropdown">
           <div
             className={
-              navBarState === "quiz" ? "quizButtonPressed" : "quizButton"
+              navBarState === "quiz" || navBarState === "flags" || navBarState === "capitals" || navBarState === "population"? "quizButtonPressed" : "quizButton"
             }
             onClick={handleQuizButton}
           >
