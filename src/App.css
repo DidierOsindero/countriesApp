@@ -240,9 +240,22 @@ Quiz Results
   justify-content: center;
 }
 
+.quizResultsWellDoneMessage, .quizResultsBetterLuckMessage {
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.quizResultsBetterLuckMessage {
+  color: rgb(231, 1, 1);
+}
+
+.quizResultsWellDoneMessage {
+  color: rgb(3, 231, 3);
+}
+
 .correctQuizResultWrapper,
 .incorrectQuizResultWrapper {
-  margin: 10px 60px;
+  margin: 10px 20px;
 }
 
 .quizResultFlagIMG {

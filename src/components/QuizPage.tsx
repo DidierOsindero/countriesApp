@@ -148,8 +148,9 @@ export const QuizPage = ({
       <QuizResultDisplay
         incorrectAnswersArray={incorrectAnswersArray}
         correctAnswersArray={correctAnswersArray}
-        handlePlayAgainButton={handlePlayAgainButton}
         numOfCorrectAnswers={numOfCorrectAnswers}
+        numOfQuestionPerRound={numOfQuestionPerRound}
+        handlePlayAgainButton={handlePlayAgainButton}
       />
     );
   } else {
