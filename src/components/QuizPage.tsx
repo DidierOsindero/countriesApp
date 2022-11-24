@@ -216,10 +216,10 @@ export const QuizPage = ({
               className="userAnswerTextInput"
               placeholder={
                 navBarState === "population"
-                  ? " Population size..."
+                  ? "Population size..."
                   : navBarState === "capitals"
-                  ? " Capital city..."
-                  : " Country name..."
+                  ? "Capital city..."
+                  : "Country name..."
               }
             />
           )}
