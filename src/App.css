@@ -1,5 +1,13 @@
 input {
   padding: 5px;
+  border: 2px solid rgb(98, 97, 97);
+  border-radius: 20px;
+  color: rgb(121, 121, 121);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(30, 54, 160);
 }
 
 button {
@@ -104,12 +112,6 @@ MAIN_CONTENT===============
 
 .searchBarWrapper {
   margin: 15px;
-}
-
-.searchBarWrapper > input {
-  border: 2px solid rgb(98, 97, 97);
-  border-radius: 20px;
-  color: rgb(121, 121, 121);
 }
 
 .bigCountryFilter,
