@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
 import { NavBarStatesType } from "../App";
+import axios from "axios";
 
 interface QuizPageProps {
   countriesArray: CountryData[];
@@ -78,6 +79,11 @@ export const QuizPage = ({
   };
 
   const handleNextCountry = () => {
+    if (questionNumber === numOfQuestionPerRound - 1) {
+      axios.post("http://localhost:4001/update-quiz-completions", {
+        mode: navBarState === "quiz" ? "flags" : navBarState,
+      });
+    }
     setIsAnswerCorrect(null);
     setQuestionNumber((prev) => (prev += 1));
   };
@@ -122,9 +128,7 @@ export const QuizPage = ({
       setNumOfCorrectAnswers((prev) => (prev += 1));
       setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
-    } else if (
-      submittedQuizAnswer.toLowerCase() !== ""
-    ) {
+    } else if (submittedQuizAnswer.toLowerCase() !== "") {
       setSubmittedQuizAnswer("");
       setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);

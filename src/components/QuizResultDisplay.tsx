@@ -17,6 +17,7 @@ export const QuizResultDisplay = ({
   handlePlayAgainButton,
   navBarState,
 }: QuizResultDisplayProps): JSX.Element => {
+
   return (
     <div className="quizResultDisplayWrapper">
       <div className="quizResultsMessageWrapper">
