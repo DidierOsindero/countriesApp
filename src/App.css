@@ -345,6 +345,14 @@ Quiz Results
 .playAgainButton {
   margin-bottom: 20px;
 }
+
+/*
+STATS
+*/
+.statsPageWrapper {
+  text-align: center;
+}
+
 /*
 FOOTER===============
 */

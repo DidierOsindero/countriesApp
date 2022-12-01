@@ -2,7 +2,7 @@ export const StatsPage = (): JSX.Element => {
     return (
       <>
         <div className="statsPageWrapper">
-          <b>Stats Page</b>
+        <h2 className="statsPageTitle">Quiz Stats</h2>
         </div>
       </>
     );
