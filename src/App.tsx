@@ -9,7 +9,8 @@ export type NavBarStatesType =
   | "quiz"
   | "flags"
   | "capitals"
-  | "population";
+  | "population"
+  | "stats";
 
 function App(): JSX.Element {
   const [navBarState, setNavBarState] = useState<NavBarStatesType>("home");
