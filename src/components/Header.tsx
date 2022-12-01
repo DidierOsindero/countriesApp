@@ -34,12 +34,8 @@ export const Header = ({
     <div className="headerWrapper">
       <div className="navBarWrapper">
         <BiWorld
-          style={{
-            color: " rgb(230, 230, 230)",
-            fontSize: "50px",
-            marginRight: "15px",
-            marginLeft: "5px",
-          }}
+          className="headerIcon"
+          onClick={handleHomeButton}
         />
         <div
           className={
