@@ -33,10 +33,7 @@ export const Header = ({
   return (
     <div className="headerWrapper">
       <div className="navBarWrapper">
-        <BiWorld
-          className="headerIcon"
-          onClick={handleHomeButton}
-        />
+        <BiWorld className="headerIcon" onClick={handleHomeButton} />
         <div
           className={
             navBarState === "home" ? "homeButtonPressed" : "homeButton"
