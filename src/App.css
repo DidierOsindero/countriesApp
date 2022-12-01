@@ -253,16 +253,16 @@ Quiz
 }
 
 .userAnswerSubmit,
-.nextCountryButton,
 .playAgainButton {
+  color: black;
   border: 1px solid rgb(75, 75, 75);
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
   font-family: inherit;
+  font-size: inherit;
 }
 
-.userAnswerSubmit:active,
-.nextCountryButton:active {
+.userAnswerSubmit:active, .playAgainButton:active {
   background-color: rgb(227, 226, 226);
 }
 
