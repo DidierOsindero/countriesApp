@@ -1,4 +1,5 @@
 import { NavBarStatesType } from "../App";
+import { BiWorld } from "react-icons/bi"; 
 //HeaderProps
 interface HeaderProps {
   navBarState: string;
@@ -31,8 +32,9 @@ export const Header = ({
 
   return (
     <div className="headerWrapper">
-      <h1>Countries of the World</h1>
+
       <div className="navBarWrapper">
+        <BiWorld style={{color: ' rgb(230, 230, 230)', fontSize: '50px', marginRight: "15px", marginLeft: "5px"}}/>
         <div
           className={
             navBarState === "home" ? "homeButtonPressed" : "homeButton"
