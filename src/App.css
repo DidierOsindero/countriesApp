@@ -80,8 +80,8 @@ HEADER===============
 .quizButtonPressed {
   padding: 15px;
   margin-bottom: 0px;
-  border: 1px solid rgb(224, 224, 224);
-  border-radius: 5px;
+  border-left: 1px solid rgb(224, 224, 224);
+  border-right: 1px solid rgb(224, 224, 224);
   color: rgb(239, 239, 239);
 }
 
