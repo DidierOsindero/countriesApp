@@ -1,20 +1,42 @@
 input {
   padding: 5px;
+  border: 0.1px solid rgb(157, 155, 155);
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 0px 7px -3px;
+  color: rgb(121, 121, 121);
+  transition: 200ms;
+}
+
+input:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(30, 54, 160);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 button {
   padding: 5px;
   font-size: 15px;
+  box-shadow: #ddd 2px 2px 10px;
+  transition: 500ms;
 }
 
 button:hover {
   background-color: rgb(248, 248, 248);
+  transform: translateY(-2px);
 }
 
 button:active {
   background-color: rgb(227, 226, 226);
   color: black;
 }
+
 /*
 HEADER===============
 */
@@ -29,33 +51,49 @@ HEADER===============
 .navBarWrapper {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(31, 31, 31);
+  box-shadow: 0px 0px 20px -5px rgb(143, 143, 143);
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .navBarWrapper > div {
   cursor: pointer;
 }
+
+.headerIcon {
+  color: rgb(224, 224, 224);
+  font-size: 50px;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
+.headerIcon:hover {
+  color: rgb(246, 246, 246);
+  cursor: pointer;
+}
+
 .homeButton,
 .quizButton {
   padding: 15px;
   margin-bottom: 0px;
-  color: rgb(121, 121, 121);
+  color: rgb(210, 209, 209);
 }
 
 .homeButton:hover,
 .quizButton:hover {
   padding: 15px;
   margin-bottom: 0px;
-  color: rgb(31, 31, 31);
+  color: rgb(239, 239, 239);
 }
 
 .homeButtonPressed,
 .quizButtonPressed {
   padding: 15px;
   margin-bottom: 0px;
-  border: 1px solid rgb(208, 208, 208);
-  border-radius: 5px;
-  color: rgb(31, 31, 31);
+  border-left: 1px solid rgb(224, 224, 224);
+  border-right: 1px solid rgb(224, 224, 224);
+  color: rgb(239, 239, 239);
 }
 
 /*
@@ -74,6 +112,7 @@ Quiz Dropdown
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border-radius: 10px;
 }
 
 .quizDropdownContent div {
@@ -81,6 +120,7 @@ Quiz Dropdown
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  border-radius: 10px;
 }
 
 .quizDropdownContent div:hover {
@@ -94,18 +134,16 @@ Quiz Dropdown
 MAIN_CONTENT===============
 */
 
+.homePageTitle {
+  text-align: center;
+}
+
 .searchTools {
   text-align: center;
 }
 
 .searchBarWrapper {
   margin: 15px;
-}
-
-.searchBarWrapper > input {
-  border: 2px solid rgb(98, 97, 97);
-  border-radius: 20px;
-  color: rgb(121, 121, 121);
 }
 
 .bigCountryFilter,
@@ -135,10 +173,6 @@ MAIN_CONTENT===============
   border: 1.5px solid rgb(31, 31, 31);
 }
 
-.filterButtonsWrapper > button:hover {
-  border: 1.5px solid rgb(31, 31, 31);
-}
-
 .countryListWrapper {
   max-width: 90%;
   margin-left: auto;
@@ -155,21 +189,32 @@ MAIN_CONTENT===============
   width: 250px;
   margin: 20px;
   text-align: center;
-  transition: 700ms;
+  box-shadow: 10px 10px 20px -5px rgb(99, 99, 99);
+  transition: border 500ms, backgroundColor 500ms, box-shadow 200ms,
+    transform 200ms;
 }
 
 .countryWrapper:hover {
   background-color: white;
   border: 2px solid rgb(31, 31, 31);
-  border-radius: 20px;
-  width: 250px;
-  margin: 20px;
-  text-align: center;
+  box-shadow: 6px 6px 20px -5px rgb(52, 52, 52);
+  transform: translateY(-3px);
+}
+
+.countryWrapper:active {
+  box-shadow: 0px 0px 20px -5px rgb(52, 52, 52);
 }
 
 .homePageCountryIMG {
-  width: 150px;
-  height: 100px;
+  height: 95px;
+  border: 0.5px solid rgb(192, 192, 192);
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px -10px rgb(143, 143, 143);
+  transition: box-shadow 300ms;
+}
+
+.countryWrapper:hover .homePageCountryIMG {
+  box-shadow: 10px 10px 15px 0px rgb(143, 143, 143);
 }
 
 /*
@@ -191,6 +236,13 @@ Quiz
 .quizImage {
   margin: 10px;
   border: 0.5px solid gray;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px -5px rgb(52, 52, 52);
+  transition: 300ms transform;
+}
+
+.quizImage:hover {
+  transform: translateY(-5px);
 }
 
 .userAnswerTextInput {
@@ -225,9 +277,6 @@ Quiz
 /*
 Quiz Results
 */
-.playAgainButton {
-  margin-top: 20px;
-}
 
 .quizResultDisplayWrapper {
   text-align: center;
@@ -240,15 +289,31 @@ Quiz Results
   justify-content: center;
 }
 
+.quizResultsWellDoneMessage,
+.quizResultsBetterLuckMessage {
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.quizResultsBetterLuckMessage {
+  color: rgb(231, 1, 1);
+}
+
+.quizResultsWellDoneMessage {
+  color: rgb(3, 231, 3);
+}
+
 .correctQuizResultWrapper,
 .incorrectQuizResultWrapper {
-  margin: 10px 60px;
+  margin: 10px 20px;
 }
 
 .quizResultFlagIMG {
   margin: 0px 0px;
   height: 60px;
   border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px -7px rgb(52, 52, 52);
 }
 .correctQuizResultFlagText,
 .incorrectQuizResultFlagText {
@@ -258,8 +323,13 @@ Quiz Results
 .correctQuizResultFlagText {
   color: rgb(3, 231, 3);
 }
+
 .incorrectQuizResultFlagText {
   color: rgb(231, 1, 1);
+}
+
+.playAgainButton {
+  margin-bottom: 20px;
 }
 /*
 FOOTER===============

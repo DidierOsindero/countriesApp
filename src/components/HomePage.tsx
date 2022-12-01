@@ -31,6 +31,7 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
+      <h2 className="homePageTitle">Search for a Country</h2>
       <div className="searchTools">
         <div className="searchBarWrapper">
           <input
@@ -65,6 +66,7 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
             const isMatchingSearch = country.name
               .toLowerCase()
               .includes(searchText.toLowerCase());
+
             const isBigCountry = Number(country.population) > 50000000;
             const isSmallCountry = Number(country.population) < 5000000;
             if (bigCountryFilter && smallCountryFilter) {
