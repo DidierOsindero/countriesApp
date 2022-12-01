@@ -134,6 +134,10 @@ Quiz Dropdown
 MAIN_CONTENT===============
 */
 
+.homePageTitle {
+  text-align: center;
+}
+
 .searchTools {
   text-align: center;
 }

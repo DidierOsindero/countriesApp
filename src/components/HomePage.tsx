@@ -31,6 +31,7 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
+      <h2 className="homePageTitle">Search for a Country</h2>
       <div className="searchTools">
         <div className="searchBarWrapper">
           <input
