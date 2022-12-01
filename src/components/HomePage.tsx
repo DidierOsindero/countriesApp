@@ -62,7 +62,6 @@ export const HomePage = ({ countriesArray }: HomePageProps): JSX.Element => {
       <div className="countryListWrapper">
         {countriesArray
           .filter((country) => {
-            
             const isMatchingSearch = country.name
               .toLowerCase()
               .includes(searchText.toLowerCase());

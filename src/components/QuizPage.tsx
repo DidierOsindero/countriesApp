@@ -167,7 +167,9 @@ export const QuizPage = ({
           <b>Score: {numOfCorrectAnswers}</b>
         </p>
         <p>
-          <i>Question {questionNumber + 1} of {numOfQuestionPerRound}</i>
+          <i>
+            Question {questionNumber + 1} of {numOfQuestionPerRound}
+          </i>
         </p>
 
         <img
