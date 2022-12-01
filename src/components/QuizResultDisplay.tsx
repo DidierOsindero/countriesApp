@@ -19,19 +19,21 @@ export const QuizResultDisplay = ({
 }: QuizResultDisplayProps): JSX.Element => {
   return (
     <div className="quizResultDisplayWrapper">
-      {numOfCorrectAnswers > numOfQuestionPerRound / 2 && (
-        <h3 className="quizResultsWellDoneMessage">
-          Well done! <br /> You got {numOfCorrectAnswers} answers correct out of{" "}
-          {numOfQuestionPerRound} questions!
-        </h3>
-      )}
-      {numOfCorrectAnswers <= numOfQuestionPerRound / 2 && (
-        <h3 className="quizResultsBetterLuckMessage">
-          Better luck next time... <br />
-          You got {numOfCorrectAnswers} answers correct out of{" "}
-          {numOfQuestionPerRound} questions!
-        </h3>
-      )}
+      <div className="quizResultsMessageWrapper">
+        {numOfCorrectAnswers > numOfQuestionPerRound / 2 && (
+          <h3 className="quizResultsWellDoneMessage">
+            ✅ Well done! <br /> You got {numOfCorrectAnswers} answers correct out
+            of {numOfQuestionPerRound} questions!
+          </h3>
+        )}
+        {numOfCorrectAnswers <= numOfQuestionPerRound / 2 && (
+          <h3 className="quizResultsBetterLuckMessage">
+            ❌ Better luck next time... <br />
+            You got {numOfCorrectAnswers} answers correct out of{" "}
+            {numOfQuestionPerRound} questions!
+          </h3>
+        )}
+      </div>
       {correctAnswersArray.length !== 0 && (
         <h4 className="correctAnswersText">Correct Answers</h4>
       )}
