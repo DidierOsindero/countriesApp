@@ -18,6 +18,10 @@ export const Header = ({
     setNavBarState("quiz");
   };
 
+  const handleStatsButton = () => {
+    setNavBarState("stats");
+  };
+
   const handleFlagsDrpDwn = () => {
     setNavBarState("flags");
   };
@@ -74,6 +78,14 @@ export const Header = ({
             </div>
           </div>
         </div>
+        <div
+            className={
+              navBarState === "stats" ? "statsButtonPressed" : "statsButton"
+            }
+            onClick={handleStatsButton}
+          >
+            Stats
+          </div>
       </div>
     </div>
   );

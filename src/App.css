@@ -74,21 +74,21 @@ HEADER===============
 }
 
 .homeButton,
-.quizButton {
+.quizButton, .statsButton {
   padding: 15px;
   margin-bottom: 0px;
   color: rgb(210, 209, 209);
 }
 
 .homeButton:hover,
-.quizButton:hover {
+.quizButton:hover, .statsButton:hover {
   padding: 15px;
   margin-bottom: 0px;
   color: rgb(239, 239, 239);
 }
 
 .homeButtonPressed,
-.quizButtonPressed {
+.quizButtonPressed, .statsButtonPressed {
   padding: 15px;
   margin-bottom: 0px;
   border-left: 1px solid rgb(224, 224, 224);
