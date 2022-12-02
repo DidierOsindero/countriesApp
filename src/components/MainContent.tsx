@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { HomePage } from "./HomePage";
 import { QuizPage } from "./QuizPage";
-import { StatsPage } from "./StatsPage"
+import { StatsPage } from "./StatsPage";
 import { NavBarStatesType } from "../App";
 import { addID } from "../utils/addID";
 
@@ -22,7 +22,7 @@ interface LanguagesData {
   name: string;
 }
 
-export interface CountryData extends CountryDataNoID{
+export interface CountryData extends CountryDataNoID {
   id: number;
 }
 
@@ -46,10 +46,8 @@ export const MainContent = ({ navBarState }: MainContentProps): JSX.Element => {
 
   if (navBarState === "home") {
     return <HomePage countriesArray={countriesArray} />;
-  } else if (navBarState === 'stats'){
-    return (
-      <StatsPage />
-    );
+  } else if (navBarState === "stats") {
+    return <StatsPage />;
   } else {
     return (
       <QuizPage countriesArray={countriesArray} navBarState={navBarState} />

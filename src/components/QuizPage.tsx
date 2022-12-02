@@ -80,7 +80,7 @@ export const QuizPage = ({
 
   const handleNextCountry = () => {
     if (questionNumber === numOfQuestionPerRound - 1) {
-      axios.post(baseURL+"/update-quiz-completions", {
+      axios.post(baseURL + "/update-quiz-completions", {
         mode: navBarState === "quiz" ? "flags" : navBarState,
       });
     }

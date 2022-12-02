@@ -79,13 +79,13 @@ export const Header = ({
           </div>
         </div>
         <div
-            className={
-              navBarState === "stats" ? "statsButtonPressed" : "statsButton"
-            }
-            onClick={handleStatsButton}
-          >
-            Stats
-          </div>
+          className={
+            navBarState === "stats" ? "statsButtonPressed" : "statsButton"
+          }
+          onClick={handleStatsButton}
+        >
+          Stats
+        </div>
       </div>
     </div>
   );

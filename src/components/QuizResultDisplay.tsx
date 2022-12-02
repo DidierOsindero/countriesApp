@@ -17,14 +17,13 @@ export const QuizResultDisplay = ({
   handlePlayAgainButton,
   navBarState,
 }: QuizResultDisplayProps): JSX.Element => {
-
   return (
     <div className="quizResultDisplayWrapper">
       <div className="quizResultsMessageWrapper">
         {numOfCorrectAnswers > numOfQuestionPerRound / 2 && (
           <h3 className="quizResultsWellDoneMessage">
-            ✅ Well done! <br /> You got {numOfCorrectAnswers} answers correct out
-            of {numOfQuestionPerRound} questions!
+            ✅ Well done! <br /> You got {numOfCorrectAnswers} answers correct
+            out of {numOfQuestionPerRound} questions!
           </h3>
         )}
         {numOfCorrectAnswers <= numOfQuestionPerRound / 2 && (
