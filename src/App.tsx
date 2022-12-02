@@ -12,6 +12,8 @@ export type NavBarStatesType =
   | "population"
   | "stats";
 
+export const baseURL = "http://localhost:4002";
+
 function App(): JSX.Element {
   const [navBarState, setNavBarState] = useState<NavBarStatesType>("home");
 

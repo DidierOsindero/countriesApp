@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { baseURL } from "../App";
 interface IQuizCompletionTracker {
   flags: number;
   capitals: number;
@@ -12,7 +13,7 @@ export const StatsPage = (): JSX.Element => {
   const [isFirstRender, setIsFirstRender] = useState(true);
 
   const fetchQuizCompletionTracker = async () => {
-    const response = await axios.get("http://localhost:4002/quiz-completions");
+    const response = await axios.get(baseURL + "/quiz-completions");
     const data = response.data;
     setQuizCompletionTracker(data);
   };
