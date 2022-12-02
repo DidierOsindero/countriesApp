@@ -14,6 +14,7 @@ export interface CountryDataNoID {
   languages: LanguagesData[];
   flags: Record<string, string>;
   region: string;
+  numericCode: string;
 }
 
 interface LanguagesData {

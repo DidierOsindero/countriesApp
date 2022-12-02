@@ -11,6 +11,7 @@ test("addID adds an ID property to every item in a CountryData array", () => {
         languages: [{ name: "string" }],
         flags: { bigFlag: "imgSrc" },
         region: "string",
+        numericCode: "170"
       },
     ])
   ).toStrictEqual([
@@ -22,6 +23,7 @@ test("addID adds an ID property to every item in a CountryData array", () => {
       languages: [{ name: "string" }],
       flags: { bigFlag: "imgSrc" },
       region: "string",
+      numericCode: "170",
       id: 1,
     },
   ]);
