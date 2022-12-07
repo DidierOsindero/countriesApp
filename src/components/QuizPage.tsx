@@ -75,18 +75,20 @@ export const QuizPage = ({
     setSubmittedQuizAnswer("");
     setQuizInputValue("");
     setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-    handleNextCountry();
   };
 
   const handleNextCountry = () => {
-    if (questionNumber === numOfQuestionPerRound - 1) {
-      axios.post(baseURL + "/update-quiz-completions", {
-        mode: navBarState === "quiz" ? "flags" : navBarState,
-      });
-    }
     setIsAnswerCorrect(null);
     setQuestionNumber((prev) => (prev += 1));
   };
+
+  const handlePostAnswer = async (answerType: "correct" | "incorrect") => {
+    console.log("This is running")
+      await axios.post(baseURL + "/update-quiz-country-data/" + currentCountry.numericCode, {
+        mode: navBarState === "quiz" ? "flags" : navBarState,
+        answerType: answerType
+      });
+  }
 
   const handlePlayAgainButton = () => {
     setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
@@ -107,6 +109,7 @@ export const QuizPage = ({
       setNumOfCorrectAnswers((prev) => (prev += 1));
       setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
+      handlePostAnswer("correct");
     } else if (
       submittedQuizAnswer.toLowerCase() !==
         String(currentCountry[countryQuizProperty]).toLowerCase() &&
@@ -115,6 +118,7 @@ export const QuizPage = ({
       setSubmittedQuizAnswer("");
       setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
+      handlePostAnswer("incorrect");
     }
   } else if (navBarState === "population") {
     if (
@@ -128,10 +132,12 @@ export const QuizPage = ({
       setNumOfCorrectAnswers((prev) => (prev += 1));
       setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
+      handlePostAnswer("correct");
     } else if (submittedQuizAnswer.toLowerCase() !== "") {
       setSubmittedQuizAnswer("");
       setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
+      handlePostAnswer("incorrect");
     }
   }
 
