@@ -75,6 +75,7 @@ export const QuizPage = ({
     setSubmittedQuizAnswer("");
     setQuizInputValue("");
     setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
+    handleNextCountry();
   };
 
   const handleNextCountry = () => {
