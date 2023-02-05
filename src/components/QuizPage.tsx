@@ -92,6 +92,7 @@ export const QuizPage = ({
     setQuestionNumber(0);
   };
 
+  //Check if guess is correct or incorrect and handle accordingly
   if (navBarState !== "population") {
     if (
       submittedQuizAnswer.toLowerCase() ===
