@@ -16,22 +16,24 @@ export const QuizPage = ({
   //create a copy of countries array which can be manipulated in isolation for this page.
   const quizArray = [...countriesArray];
 
-  const [dispatch, state] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const {quizInputValue, submittedQuizAnswer, isAnswerCorrect,
+   questionNumber, numOfCorrectAnswers, incorrectAnswersArray, correctAnswersArray} = state
 
-  //STATES
-  const [quizInputValue, setQuizInputValue] = useState<string>("");
-  const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
-  const [questionNumber, setQuestionNumber] = useState<number>(0);
-  const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
+  // //STATES
+  // const [quizInputValue, setQuizInputValue] = useState<string>("");
+  // const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
+  // const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+  // const [questionNumber, setQuestionNumber] = useState<number>(0);
+  // const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
 
-  //Arrays for correct and incorrect answers to be passed down to end game display
-  const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<
-    CountryData[]
-  >([]);
-  const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>(
-    []
-  );
+  // //Arrays for correct and incorrect answers to be passed down to end game display
+  // const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<
+  //   CountryData[]
+  // >([]);
+  // const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>(
+  //   []
+  // );
 
   //Create a state to store random version of countries array
   const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
@@ -68,9 +70,10 @@ export const QuizPage = ({
 
   //HANDLERS
   const handleAnswerSubmit = () => {
-    setSubmittedQuizAnswer(quizInputValue);
-    setQuizInputValue("");
-    setTimeout(handleNextCountry, 1500);
+    dispatch({type: 'submit answer'})
+    // setSubmittedQuizAnswer(quizInputValue);
+    // setQuizInputValue("");
+    // setTimeout(handleNextCountry, 1500);
   };
 
   const handleSkipButton = () => {
@@ -215,7 +218,7 @@ export const QuizPage = ({
           {isAnswerCorrect === null && (
             <input
               value={quizInputValue}
-              onChange={(el) => setQuizInputValue(el.target.value)}
+              onChange={(el) => dispatch({type: 'update input', payload: el.target.value})}
               className="userAnswerTextInput"
               placeholder={
                 navBarState === "population"
