@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
 import { NavBarStatesType } from "../App";
+import { initialState, reducer } from "../reducer";
 
 interface QuizPageProps {
   countriesArray: CountryData[];
@@ -14,6 +15,8 @@ export const QuizPage = ({
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
   const quizArray = [...countriesArray];
+
+  const [dispatch, state] = useReducer(reducer, initialState)
 
   //STATES
   const [quizInputValue, setQuizInputValue] = useState<string>("");
@@ -60,7 +63,7 @@ export const QuizPage = ({
   //currentCountry variable (non-re-rendering)
   const currentCountry = randomQuizArray[questionNumber];
 
-  //number of questions per round variable
+  //constant which stores the number of questions asked per round
   const numOfQuestionPerRound = 10;
 
   //HANDLERS
