@@ -9,7 +9,6 @@ export interface IQuizState {
   numOfCorrectAnswers: number;
   incorrectAnswersArray: CountryData[];
   correctAnswersArray: CountryData[];
-  randomQuizArray: CountryData[];
   countryQuizProperty: CountryQuizPropertyType;
 }
 
@@ -29,4 +28,22 @@ type QuizActionType =
   | "incorrect population guess";
 type QuizPayloadType = number | string;
 
-export function reducer(state: IQuizState, action: QuizAction) {}
+
+export const initialState: IQuizState = {
+    quizInputValue: "",
+  submittedQuizAnswer: "",
+  isAnswerCorrect: null,
+  questionNumber: 0,
+  numOfCorrectAnswers: 0,
+  incorrectAnswersArray: [],
+  correctAnswersArray: [],
+  countryQuizProperty: "name",
+}
+
+export function reducer(state: IQuizState, action: QuizAction): IQuizState {
+
+    switch (action.type) {
+        case ''
+    }
+    return state
+}
