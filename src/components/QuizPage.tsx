@@ -71,31 +71,34 @@ export const QuizPage = ({
   //HANDLERS
   const handleAnswerSubmit = () => {
     dispatch({type: 'submit answer'})
+    setTimeout(() => dispatch({type: 'next country'}), 1500)
     // setSubmittedQuizAnswer(quizInputValue);
     // setQuizInputValue("");
     // setTimeout(handleNextCountry, 1500);
   };
 
   const handleSkipButton = () => {
-    setSubmittedQuizAnswer("");
-    setQuizInputValue("");
-    setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-    handleNextCountry();
+    dispatch({type: 'skip question'})
+    // setSubmittedQuizAnswer("");
+    // setQuizInputValue("");
+    // setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
+    // handleNextCountry();
   };
 
-  const handleNextCountry = () => {
-    setIsAnswerCorrect(null);
-    setQuestionNumber((prev) => (prev += 1));
-  };
+  // const handleNextCountry = () => {
+  //   setIsAnswerCorrect(null);
+  //   setQuestionNumber((prev) => (prev += 1));
+  // };
 
   const handlePlayAgainButton = () => {
     setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
-    setQuizInputValue("");
-    setCorrectAnswersArray([]);
-    setIncorrectAnswersArray([]);
-    setIsAnswerCorrect(null);
-    setNumOfCorrectAnswers(0);
-    setQuestionNumber(0);
+    dispatch({type: 'play again'})
+    // setQuizInputValue("");
+    // setCorrectAnswersArray([]);
+    // setIncorrectAnswersArray([]);
+    // setIsAnswerCorrect(null);
+    // setNumOfCorrectAnswers(0);
+    // setQuestionNumber(0);
   };
 
   //Check if guess is correct or incorrect and handle accordingly
@@ -104,18 +107,22 @@ export const QuizPage = ({
       submittedQuizAnswer.toLowerCase() ===
       String(currentCountry[countryQuizProperty]).toLowerCase()
     ) {
-      setSubmittedQuizAnswer("");
-      setNumOfCorrectAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(true);
+    dispatch({type: 'correct guess', payload: currentCountry})
+
+      // setSubmittedQuizAnswer("");
+      // setNumOfCorrectAnswers((prev) => (prev += 1));
+      // setCorrectAnswersArray((prev) => [...prev, currentCountry]);
+      // setIsAnswerCorrect(true);
     } else if (
       submittedQuizAnswer.toLowerCase() !==
         String(currentCountry[countryQuizProperty]).toLowerCase() &&
       submittedQuizAnswer.toLowerCase() !== ""
     ) {
-      setSubmittedQuizAnswer("");
-      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(false);
+    dispatch({type: 'incorrect guess', payload: currentCountry})
+
+      // setSubmittedQuizAnswer("");
+      // setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
+      // setIsAnswerCorrect(false);
     }
   } else if (navBarState === "population") {
     if (
@@ -125,10 +132,12 @@ export const QuizPage = ({
       Number(submittedQuizAnswer) <=
         Number(currentCountry[countryQuizProperty]) + 1000000
     ) {
-      setSubmittedQuizAnswer("");
-      setNumOfCorrectAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(true);
+    dispatch({type: 'correct guess', payload: currentCountry})
+
+      // setSubmittedQuizAnswer("");
+      // setNumOfCorrectAnswers((prev) => (prev += 1));
+      // setCorrectAnswersArray((prev) => [...prev, currentCountry]);
+      // setIsAnswerCorrect(true);
     } else if (
       submittedQuizAnswer.toLowerCase() !== "" &&
       (Number(submittedQuizAnswer) <
@@ -136,9 +145,11 @@ export const QuizPage = ({
         Number(submittedQuizAnswer) >
           Number(currentCountry[countryQuizProperty]) + 1000000)
     ) {
-      setSubmittedQuizAnswer("");
-      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(false);
+    dispatch({type: 'incorrect guess', payload: currentCountry})
+
+      // setSubmittedQuizAnswer("");
+      // setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
+      // setIsAnswerCorrect(false);
     }
   }
 

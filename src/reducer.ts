@@ -45,7 +45,7 @@ export function reducer(state: IQuizState, action: QuizAction): IQuizState {
         case 'next country':
           return {...state, isAnswerCorrect: null, questionNumber: state.questionNumber + 1 }
         case 'skip question':
-          return {...state, submittedQuizAnswer: "", quizInputValue: "", incorrectAnswersArray: [...state.incorrectAnswersArray, action.payload as CountryData]}
+          return {...state, submittedQuizAnswer: "", quizInputValue: "", incorrectAnswersArray: [...state.incorrectAnswersArray, action.payload as CountryData], isAnswerCorrect: null, questionNumber: state.questionNumber+1}
         case 'play again':
           return initialState
         case 'correct guess':
