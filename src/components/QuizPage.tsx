@@ -21,7 +21,6 @@ export const QuizPage = ({
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
-  //const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
 
   //Arrays for correct and incorrect answers to be passed down to end game display
   const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<
@@ -74,7 +73,6 @@ export const QuizPage = ({
   const handleSkipButton = () => {
     setSubmittedQuizAnswer("");
     setQuizInputValue("");
-    //setNumOfTotalAnswers((prev) => (prev += 1));
     setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
     handleNextCountry();
   };
@@ -91,7 +89,6 @@ export const QuizPage = ({
     setIncorrectAnswersArray([]);
     setIsAnswerCorrect(null);
     setNumOfCorrectAnswers(0);
-    //setNumOfTotalAnswers(0);
     setQuestionNumber(0);
   };
 
@@ -102,7 +99,6 @@ export const QuizPage = ({
     ) {
       setSubmittedQuizAnswer("");
       setNumOfCorrectAnswers((prev) => (prev += 1));
-      //setNumOfTotalAnswers((prev) => (prev += 1));
       setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
     } else if (
@@ -111,7 +107,6 @@ export const QuizPage = ({
       submittedQuizAnswer.toLowerCase() !== ""
     ) {
       setSubmittedQuizAnswer("");
-      //setNumOfTotalAnswers((prev) => (prev += 1));
       setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
     }
@@ -125,7 +120,6 @@ export const QuizPage = ({
     ) {
       setSubmittedQuizAnswer("");
       setNumOfCorrectAnswers((prev) => (prev += 1));
-      //setNumOfTotalAnswers((prev) => (prev += 1));
       setCorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(true);
     } else if (
@@ -136,7 +130,6 @@ export const QuizPage = ({
           Number(currentCountry[countryQuizProperty]) + 1000000)
     ) {
       setSubmittedQuizAnswer("");
-      //setNumOfTotalAnswers((prev) => (prev += 1));
       setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
       setIsAnswerCorrect(false);
     }
