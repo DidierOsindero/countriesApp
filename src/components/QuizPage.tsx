@@ -72,7 +72,7 @@ console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
   };
 
   const handlePlayAgainButton = () => {
-    //  setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
+    setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
     dispatch({type: 'play again'})
   };
 
