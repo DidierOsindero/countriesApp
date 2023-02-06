@@ -30,7 +30,7 @@ console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
 
   useEffect(() => {
     setRandomQuizArray(quizArrayRef.current.sort(() => Math.random() - 0.5))
-  },[])
+  },[navBarState])
 
   //State to store what country property is being quized
   type countryQuizPropertyType = "name" | "capital" | "population";
