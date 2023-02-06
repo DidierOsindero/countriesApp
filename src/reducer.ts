@@ -51,7 +51,7 @@ export function reducer(state: IQuizState, action: QuizAction): IQuizState {
         case 'correct guess':
           return {...state, submittedQuizAnswer: "", numOfCorrectAnswers: state.numOfCorrectAnswers + 1, correctAnswersArray: [...state.correctAnswersArray, action.payload as CountryData], isAnswerCorrect: true}
         case 'incorrect guess':
-          return {...state, submittedQuizAnswer: "", incorrectAnswersArray: [...state.correctAnswersArray, action.payload as CountryData], isAnswerCorrect: false}
+          return {...state, submittedQuizAnswer: "", incorrectAnswersArray: [...state.incorrectAnswersArray, action.payload as CountryData], isAnswerCorrect: false}
         case 'update input':
           return {...state, quizInputValue: action.payload as string}
         default:

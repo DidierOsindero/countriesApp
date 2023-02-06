@@ -17,13 +17,16 @@ export const QuizPage = ({
   const quizArrayRef = useRef([...countriesArray]);
   const [state, dispatch] = useReducer(reducer, initialState)
   const {quizInputValue, submittedQuizAnswer, isAnswerCorrect,
-   questionNumber, numOfCorrectAnswers, incorrectAnswersArray, correctAnswersArray} = state
+   questionNumber, numOfCorrectAnswers} = state
 
 
   //Create a state to store random version of countries array
   const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
     []
   );
+  console.log(randomQuizArray)
+console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
+
 
   useEffect(() => {
     setRandomQuizArray(quizArrayRef.current.sort(() => Math.random() - 0.5))
@@ -64,7 +67,7 @@ export const QuizPage = ({
   };
 
   const handleSkipButton = () => {
-    dispatch({type: 'skip question'})
+    dispatch({type: 'skip question', payload: currentCountry})
 
   };
 
@@ -111,10 +114,8 @@ export const QuizPage = ({
   if (questionNumber === numOfQuestionPerRound) {
     return (
       <QuizResultDisplay
-        incorrectAnswersArray={incorrectAnswersArray}
-        correctAnswersArray={correctAnswersArray}
-        numOfCorrectAnswers={numOfCorrectAnswers}
-        numOfQuestionPerRound={numOfQuestionPerRound}
+      numOfQuestionPerRound={numOfQuestionPerRound}
+        state={state}
         handlePlayAgainButton={handlePlayAgainButton}
         navBarState={navBarState}
       />
