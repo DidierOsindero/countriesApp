@@ -25,7 +25,6 @@ export const QuizPage = ({
     []
   );
   console.log(randomQuizArray)
-console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
 
 
   useEffect(() => {
@@ -46,7 +45,8 @@ console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
     } else if (navBarState === "population") {
       setCountryQuizProperty("population");
     }
-    handlePlayAgainButton();
+    
+    dispatch({type: 'play again'})
   }, [navBarState]);
 
   //error message if data could not be fetched
@@ -64,11 +64,6 @@ console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
   const handleAnswerSubmit = () => {
     dispatch({type: 'submit answer'})
     setTimeout(() => dispatch({type: 'next country'}), 1500)
-  };
-
-  const handleSkipButton = () => {
-    dispatch({type: 'skip question', payload: currentCountry})
-
   };
 
   const handlePlayAgainButton = () => {
@@ -197,7 +192,7 @@ console.log("INCORRECT ANSWERS ARRAY", state.incorrectAnswersArray)
           )}
           <div>
             {quizInputValue === "" && isAnswerCorrect === null ? (
-              <button onClick={handleSkipButton} className="userAnswerSubmit">
+              <button onClick={() => dispatch({type: 'skip question', payload: currentCountry})} className="userAnswerSubmit">
                 Skip
               </button>
             ) : (
