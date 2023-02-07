@@ -14,22 +14,14 @@ export const QuizPage = ({
   navBarState,
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
-  const countriesArrayRef = useRef([...countriesArray]);
+  const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>([]);
   const [state, dispatch] = useReducer(reducer, initialState)
   const {quizInputValue, submittedQuizAnswer, isAnswerCorrect,
    questionNumber, numOfCorrectAnswers} = state
 
-
-  //Create a state to store random version of countries array
-  const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
-    []
-  );
-  console.log(randomQuizArray)
-
-
   useEffect(() => {
-    setRandomQuizArray(countriesArrayRef.current.sort(() => Math.random() - 0.5))
-  },[navBarState])
+    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5));
+  },[navBarState,countriesArray])
 
   //State to store what country property is being quized
   type countryQuizPropertyType = "name" | "capital" | "population";
@@ -55,7 +47,7 @@ export const QuizPage = ({
   }
 
   //currentCountry variable (non-re-rendering)
-  const currentCountry = countriesArrayRef.current[questionNumber];
+  const currentCountry = randomQuizArray[questionNumber];
 
   //constant which stores the number of questions asked per round
   const numOfQuestionPerRound = 10;
@@ -67,12 +59,15 @@ export const QuizPage = ({
   };
 
   const handlePlayAgainButton = () => {
-    setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
+    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5))
     dispatch({type: 'play again'})
   };
 
   //Check if guess is correct or incorrect and handle accordingly
-  if (navBarState !== "population") {
+  if (!currentCountry) {
+    console.log("Loading Current Country")
+  }
+  else if (navBarState !== "population") {
     if (
       submittedQuizAnswer.toLowerCase() ===
       String(currentCountry[countryQuizProperty]).toLowerCase()
@@ -106,7 +101,10 @@ export const QuizPage = ({
   }
 
   //RETURNS
-  if (questionNumber === numOfQuestionPerRound) {
+  if (!currentCountry) {
+    return <h1>Loading </h1>
+  }
+  else if (questionNumber === numOfQuestionPerRound) {
     return (
       <QuizResultDisplay
       numOfQuestionPerRound={numOfQuestionPerRound}
