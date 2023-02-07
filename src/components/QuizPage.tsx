@@ -14,7 +14,7 @@ export const QuizPage = ({
   navBarState,
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
-  const quizArrayRef = useRef([...countriesArray]);
+  const countriesArrayRef = useRef([...countriesArray]);
   const [state, dispatch] = useReducer(reducer, initialState)
   const {quizInputValue, submittedQuizAnswer, isAnswerCorrect,
    questionNumber, numOfCorrectAnswers} = state
@@ -28,7 +28,7 @@ export const QuizPage = ({
 
 
   useEffect(() => {
-    setRandomQuizArray(quizArrayRef.current.sort(() => Math.random() - 0.5))
+    setRandomQuizArray(countriesArrayRef.current.sort(() => Math.random() - 0.5))
   },[navBarState])
 
   //State to store what country property is being quized
@@ -55,7 +55,7 @@ export const QuizPage = ({
   }
 
   //currentCountry variable (non-re-rendering)
-  const currentCountry = quizArrayRef.current[questionNumber];
+  const currentCountry = countriesArrayRef.current[questionNumber];
 
   //constant which stores the number of questions asked per round
   const numOfQuestionPerRound = 10;
