@@ -15,13 +15,18 @@ export const QuizPage = ({
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
   const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>([]);
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const {quizInputValue, submittedQuizAnswer, isAnswerCorrect,
-   questionNumber, numOfCorrectAnswers} = state
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    quizInputValue,
+    submittedQuizAnswer,
+    isAnswerCorrect,
+    questionNumber,
+    numOfCorrectAnswers,
+  } = state;
 
   useEffect(() => {
     setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5));
-  },[navBarState,countriesArray])
+  }, [navBarState, countriesArray]);
 
   //State to store what country property is being quized
   type countryQuizPropertyType = "name" | "capital" | "population";
@@ -37,8 +42,8 @@ export const QuizPage = ({
     } else if (navBarState === "population") {
       setCountryQuizProperty("population");
     }
-    
-    dispatch({type: 'play again'})
+
+    dispatch({ type: "play again" });
   }, [navBarState]);
 
   //error message if data could not be fetched
@@ -54,31 +59,30 @@ export const QuizPage = ({
 
   //HANDLERS
   const handleAnswerSubmit = () => {
-    dispatch({type: 'submit answer'})
-    setTimeout(() => dispatch({type: 'next country'}), 1500)
+    dispatch({ type: "submit answer" });
+    setTimeout(() => dispatch({ type: "next country" }), 1500);
   };
 
   const handlePlayAgainButton = () => {
-    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5))
-    dispatch({type: 'play again'})
+    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5));
+    dispatch({ type: "play again" });
   };
 
   //Check if guess is correct or incorrect and handle accordingly
   if (!currentCountry) {
-    console.log("Loading Current Country")
-  }
-  else if (navBarState !== "population") {
+    console.log("Loading Current Country");
+  } else if (navBarState !== "population") {
     if (
       submittedQuizAnswer.toLowerCase() ===
       String(currentCountry[countryQuizProperty]).toLowerCase()
     ) {
-    dispatch({type: 'correct guess', payload: currentCountry})
+      dispatch({ type: "correct guess", payload: currentCountry });
     } else if (
       submittedQuizAnswer.toLowerCase() !==
         String(currentCountry[countryQuizProperty]).toLowerCase() &&
       submittedQuizAnswer.toLowerCase() !== ""
     ) {
-    dispatch({type: 'incorrect guess', payload: currentCountry})
+      dispatch({ type: "incorrect guess", payload: currentCountry });
     }
   } else if (navBarState === "population") {
     if (
@@ -88,7 +92,7 @@ export const QuizPage = ({
       Number(submittedQuizAnswer) <=
         Number(currentCountry[countryQuizProperty]) + 1000000
     ) {
-    dispatch({type: 'correct guess', payload: currentCountry})
+      dispatch({ type: "correct guess", payload: currentCountry });
     } else if (
       submittedQuizAnswer.toLowerCase() !== "" &&
       (Number(submittedQuizAnswer) <
@@ -96,18 +100,17 @@ export const QuizPage = ({
         Number(submittedQuizAnswer) >
           Number(currentCountry[countryQuizProperty]) + 1000000)
     ) {
-    dispatch({type: 'incorrect guess', payload: currentCountry})
+      dispatch({ type: "incorrect guess", payload: currentCountry });
     }
   }
 
   //RETURNS
   if (!currentCountry) {
-    return <h1>Loading </h1>
-  }
-  else if (questionNumber === numOfQuestionPerRound) {
+    return <h1>Loading </h1>;
+  } else if (questionNumber === numOfQuestionPerRound) {
     return (
       <QuizResultDisplay
-      numOfQuestionPerRound={numOfQuestionPerRound}
+        numOfQuestionPerRound={numOfQuestionPerRound}
         state={state}
         handlePlayAgainButton={handlePlayAgainButton}
         navBarState={navBarState}
@@ -177,7 +180,9 @@ export const QuizPage = ({
           {isAnswerCorrect === null && (
             <input
               value={quizInputValue}
-              onChange={(el) => dispatch({type: 'update input', payload: el.target.value})}
+              onChange={(el) =>
+                dispatch({ type: "update input", payload: el.target.value })
+              }
               className="userAnswerTextInput"
               placeholder={
                 navBarState === "population"
@@ -190,7 +195,12 @@ export const QuizPage = ({
           )}
           <div>
             {quizInputValue === "" && isAnswerCorrect === null ? (
-              <button onClick={() => dispatch({type: 'skip question', payload: currentCountry})} className="userAnswerSubmit">
+              <button
+                onClick={() =>
+                  dispatch({ type: "skip question", payload: currentCountry })
+                }
+                className="userAnswerSubmit"
+              >
                 Skip
               </button>
             ) : (

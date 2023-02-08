@@ -1,7 +1,7 @@
 import { IQuizState } from "../reducer";
 
 interface QuizResultDisplayProps {
-  numOfQuestionPerRound: number
+  numOfQuestionPerRound: number;
   handlePlayAgainButton: () => void;
   navBarState: string;
   state: IQuizState;
@@ -11,9 +11,10 @@ export const QuizResultDisplay = ({
   numOfQuestionPerRound,
   handlePlayAgainButton,
   navBarState,
-  state
+  state,
 }: QuizResultDisplayProps): JSX.Element => {
-  const {numOfCorrectAnswers, correctAnswersArray, incorrectAnswersArray} = state
+  const { numOfCorrectAnswers, correctAnswersArray, incorrectAnswersArray } =
+    state;
   return (
     <div className="quizResultDisplayWrapper">
       {numOfCorrectAnswers > numOfQuestionPerRound / 2 && (
