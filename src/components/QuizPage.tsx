@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
 import { NavBarStatesType } from "../App";
