@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { CountryData } from "./MainContent";
 import { QuizResultDisplay } from "./QuizResultDisplay";
 import { NavBarStatesType } from "../App";
+import { initialState, reducer } from "../reducer";
 
 interface QuizPageProps {
   countriesArray: CountryData[];
@@ -13,28 +14,19 @@ export const QuizPage = ({
   navBarState,
 }: QuizPageProps): JSX.Element => {
   //create a copy of countries array which can be manipulated in isolation for this page.
-  const quizArray = [...countriesArray];
+  const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    quizInputValue,
+    submittedQuizAnswer,
+    isAnswerCorrect,
+    questionNumber,
+    numOfCorrectAnswers,
+  } = state;
 
-  //STATES
-  const [quizInputValue, setQuizInputValue] = useState<string>("");
-  const [submittedQuizAnswer, setSubmittedQuizAnswer] = useState<string>("");
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
-  const [questionNumber, setQuestionNumber] = useState<number>(0);
-  const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState<number>(0);
-  //const [numOfTotalAnswers, setNumOfTotalAnswers] = useState<number>(0);
-
-  //Arrays for correct and incorrect answers to be passed down to end game display
-  const [incorrectAnswersArray, setIncorrectAnswersArray] = useState<
-    CountryData[]
-  >([]);
-  const [correctAnswersArray, setCorrectAnswersArray] = useState<CountryData[]>(
-    []
-  );
-
-  //Create a state to store random version of countries array
-  const [randomQuizArray, setRandomQuizArray] = useState<CountryData[]>(
-    quizArray.sort(() => Math.random() - 0.5)
-  );
+  useEffect(() => {
+    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5));
+  }, [navBarState, countriesArray]);
 
   //State to store what country property is being quized
   type countryQuizPropertyType = "name" | "capital" | "population";
@@ -50,7 +42,8 @@ export const QuizPage = ({
     } else if (navBarState === "population") {
       setCountryQuizProperty("population");
     }
-    handlePlayAgainButton();
+
+    dispatch({ type: "play again" });
   }, [navBarState]);
 
   //error message if data could not be fetched
@@ -61,59 +54,35 @@ export const QuizPage = ({
   //currentCountry variable (non-re-rendering)
   const currentCountry = randomQuizArray[questionNumber];
 
-  //number of questions per round variable
+  //constant which stores the number of questions asked per round
   const numOfQuestionPerRound = 10;
 
   //HANDLERS
   const handleAnswerSubmit = () => {
-    setSubmittedQuizAnswer(quizInputValue);
-    setQuizInputValue("");
-    setTimeout(handleNextCountry, 1500);
-  };
-
-  const handleSkipButton = () => {
-    setSubmittedQuizAnswer("");
-    setQuizInputValue("");
-    //setNumOfTotalAnswers((prev) => (prev += 1));
-    setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-    handleNextCountry();
-  };
-
-  const handleNextCountry = () => {
-    setIsAnswerCorrect(null);
-    setQuestionNumber((prev) => (prev += 1));
+    dispatch({ type: "submit answer" });
+    setTimeout(() => dispatch({ type: "next country" }), 1500);
   };
 
   const handlePlayAgainButton = () => {
-    setRandomQuizArray((prev) => prev.sort(() => Math.random() - 0.5));
-    setQuizInputValue("");
-    setCorrectAnswersArray([]);
-    setIncorrectAnswersArray([]);
-    setIsAnswerCorrect(null);
-    setNumOfCorrectAnswers(0);
-    //setNumOfTotalAnswers(0);
-    setQuestionNumber(0);
+    setRandomQuizArray([...countriesArray].sort(() => Math.random() - 0.5));
+    dispatch({ type: "play again" });
   };
 
-  if (navBarState !== "population") {
+  //Check if guess is correct or incorrect and handle accordingly
+  if (!currentCountry) {
+    console.log("Loading Current Country");
+  } else if (navBarState !== "population") {
     if (
       submittedQuizAnswer.toLowerCase() ===
       String(currentCountry[countryQuizProperty]).toLowerCase()
     ) {
-      setSubmittedQuizAnswer("");
-      setNumOfCorrectAnswers((prev) => (prev += 1));
-      //setNumOfTotalAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(true);
+      dispatch({ type: "correct guess", payload: currentCountry });
     } else if (
       submittedQuizAnswer.toLowerCase() !==
         String(currentCountry[countryQuizProperty]).toLowerCase() &&
       submittedQuizAnswer.toLowerCase() !== ""
     ) {
-      setSubmittedQuizAnswer("");
-      //setNumOfTotalAnswers((prev) => (prev += 1));
-      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(false);
+      dispatch({ type: "incorrect guess", payload: currentCountry });
     }
   } else if (navBarState === "population") {
     if (
@@ -123,11 +92,7 @@ export const QuizPage = ({
       Number(submittedQuizAnswer) <=
         Number(currentCountry[countryQuizProperty]) + 1000000
     ) {
-      setSubmittedQuizAnswer("");
-      setNumOfCorrectAnswers((prev) => (prev += 1));
-      //setNumOfTotalAnswers((prev) => (prev += 1));
-      setCorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(true);
+      dispatch({ type: "correct guess", payload: currentCountry });
     } else if (
       submittedQuizAnswer.toLowerCase() !== "" &&
       (Number(submittedQuizAnswer) <
@@ -135,21 +100,18 @@ export const QuizPage = ({
         Number(submittedQuizAnswer) >
           Number(currentCountry[countryQuizProperty]) + 1000000)
     ) {
-      setSubmittedQuizAnswer("");
-      //setNumOfTotalAnswers((prev) => (prev += 1));
-      setIncorrectAnswersArray((prev) => [...prev, currentCountry]);
-      setIsAnswerCorrect(false);
+      dispatch({ type: "incorrect guess", payload: currentCountry });
     }
   }
 
   //RETURNS
-  if (questionNumber === numOfQuestionPerRound) {
+  if (!currentCountry) {
+    return <h1>Loading </h1>;
+  } else if (questionNumber === numOfQuestionPerRound) {
     return (
       <QuizResultDisplay
-        incorrectAnswersArray={incorrectAnswersArray}
-        correctAnswersArray={correctAnswersArray}
-        numOfCorrectAnswers={numOfCorrectAnswers}
         numOfQuestionPerRound={numOfQuestionPerRound}
+        state={state}
         handlePlayAgainButton={handlePlayAgainButton}
         navBarState={navBarState}
       />
@@ -218,7 +180,9 @@ export const QuizPage = ({
           {isAnswerCorrect === null && (
             <input
               value={quizInputValue}
-              onChange={(el) => setQuizInputValue(el.target.value)}
+              onChange={(el) =>
+                dispatch({ type: "update input", payload: el.target.value })
+              }
               className="userAnswerTextInput"
               placeholder={
                 navBarState === "population"
@@ -231,7 +195,12 @@ export const QuizPage = ({
           )}
           <div>
             {quizInputValue === "" && isAnswerCorrect === null ? (
-              <button onClick={handleSkipButton} className="userAnswerSubmit">
+              <button
+                onClick={() =>
+                  dispatch({ type: "skip question", payload: currentCountry })
+                }
+                className="userAnswerSubmit"
+              >
                 Skip
               </button>
             ) : (

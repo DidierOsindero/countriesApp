@@ -1,22 +1,20 @@
-import { CountryData } from "./MainContent";
+import { IQuizState } from "../reducer";
 
 interface QuizResultDisplayProps {
-  incorrectAnswersArray: CountryData[];
-  correctAnswersArray: CountryData[];
-  numOfCorrectAnswers: number;
   numOfQuestionPerRound: number;
   handlePlayAgainButton: () => void;
   navBarState: string;
+  state: IQuizState;
 }
 
 export const QuizResultDisplay = ({
-  incorrectAnswersArray,
-  correctAnswersArray,
-  numOfCorrectAnswers,
   numOfQuestionPerRound,
   handlePlayAgainButton,
   navBarState,
+  state,
 }: QuizResultDisplayProps): JSX.Element => {
+  const { numOfCorrectAnswers, correctAnswersArray, incorrectAnswersArray } =
+    state;
   return (
     <div className="quizResultDisplayWrapper">
       {numOfCorrectAnswers > numOfQuestionPerRound / 2 && (
